@@ -1,25 +1,111 @@
-# Hypothesis & Success Metrics (Module 3)
+# Hypothesis and metrics: Back in Flow
 
-## Pre-work · Hypothesis check
-- **Role , who you are solving for (from M2):** The quick closer: a consumer with one or more open claims and variable shift income who opens the portal on her phone after a reminder and wants it done fast.
-- **Goal , what this user is ultimately trying to achieve:** Agree to a monthly plan she can actually keep, so she can stop worrying and get on with her life.
-- **Friction / moment of misery , the specific pain blocking their goal:** She picks the shortest plan because it looks like the right answer, or lets the chat approve one in a minute, without knowing what happens if she misses a payment, and then misses the second one.
-- **Current workaround , the external tool or manual process they rely on (M2):** Guessing her income and taking the fastest path to a yes. When the plan breaks, she calls an agent, who asks again for everything she already entered online.
-- **Problem Hook , your one-sentence framing of the business crisis (M1):** We must solve a north star that rewards broken plans, with SSR rising while one in five new plans misses a payment within 60 days, by addressing consumers who are pushed to agree quickly instead of agreeing to a plan they understand and can actually keep.
-- **Value Proposition , the outcome your initiative promised to deliver (M1):** For consumers with one or more open claims and irregular income, we will show exactly what they owe across all claims and what happens if something goes wrong, before they commit, so they choose a plan they can keep. It’s urgent because every month at today’s baseline adds about 730 broken plans that the current north star doesn’t show.
+**Case:** Riverty BU Collection, A Fair Way Forward
+**Module:** 3, data-backed product hypothesis
+**Persona:** The quick closer (Mara)
 
-## Read the evidence in your case
-- **Where does your case say people stall or leave? Does that match the friction you wrote in Module 2?:** Nuance, with one partial contradiction. Inside the journey, the biggest loss is between the income document step and plan review: 5,943 to 4,630 (77.9%), so 1,313 people lost. T-201 reports 853 journeys where the document never arrived, so the mobile upload bug likely explains a large part of that, although the pack doesn’t confirm these are the same people. The commitment moment itself isn’t where people leave: 83.1% of those reaching plan review agree. The real leak comes after agreement, where only 3,115 of 3,846 agreements (81.0%) stay free of missed payments for 60 days, so 731 plans break. That confirms my Module 2 friction: the quick closer doesn’t drop out, she agrees and then fails. The contradiction is volume: by far the largest loss happens before the journey starts, from 38,000 portal visitors to 8,360 starters (22.0%). My hypothesis doesn’t address that, and the pack has no data on why. Metric I’d ask for: exit reasons or page behavior between portal entry and journey start.
-- **What got better or worse in the case, and does that support the workaround your persona uses?:** Confirms the core of the hook. Before the change, missed payments were stable (15.2%, 15.9%, 15.6% in Months 1 to 3). When the plan screen started showing the 6-month plan first in Month 4, missed payments jumped to 18.4% and rose to 19.0% by Month 6, while agreement rate rose from 44.2% to 46.0% and SSR from 32.3% to 34.7%. The north star improved while plans broke more often. Nuance on the workaround: agent contact within 7 days fell steadily from 33.4% to 31.0%, and that decline started before Month 4. So the phone workaround isn’t growing. The pain has shifted from calling to breaking. One open question: the 60-day missed payment figures for Months 5 and 6 may not be fully observed yet. Metric I’d ask for: the maturity date of each month’s 60-day cohort.
-- **Which user in the case is carrying the pain, and is that the person your Module 2 persona describes?:** Confirms the persona, with nuance. Consumers with variable or shift income carry the highest missed payment rate (22.5% vs. 17.4% for fixed salary) and a lower agreement rate (41.6% vs. 48.1%). That’s the quick closer. Multi-claim consumers carry a different pain: low agreement (37.7% with two claims, 27.6% with three or more) and high agent contact (40.0% and 43.0%), with much higher median instalments (€88.73 and €114.84 vs. €58.72). That looks more like the cautious checker, plus an affordability issue. Chat users confirm the speed trap: agreement is 53.3% vs. 44.4%, but missed payments are 21.6% vs. 18.3%. One surprise contradicts my expectation: purchased and client portfolios perform almost identically (missed payments 19.4% vs. 18.8%), even though T-203 links amount mismatches to purchased cases. Mobile agreement trails desktop (43.8% vs. 54.0%). Metric I’d ask for: a cross-tab of income pattern and number of claims, because Mara sits in both groups.
+> Sample data, illustrative, not Riverty research. All quotes, tickets and figures come from the fictional cohort 2 data pack. Estimates and calculations of my own are labeled as such.
 
-## Step 2 · Craft your hypothesis
-- **Qualitative evidence (from M2) , quote the specific friction / moment of misery for your persona:** “I picked the plan with the lowest number of months because it looked like the right answer. The amount was too high and I missed the second payment.” (N-02), backed by “The chat was quick. It said yes to my plan in a minute. I was not sure what would happen if I paid late.” (N-05)
-- **Quantitative evidence (from M3) , name the metric or data point that confirms the pain; cite the number:** Missed payments within 60 days rose from 15.6% to 18.4% when the 6-month plan moved to the top of the plan screen, reaching 19.0% (731 of 3,846 agreements) by Month 6. Variable or shift earners miss most often at 22.5%, and chat users miss more often (21.6% vs. 18.3%) despite agreeing more.
-- **Persona , role, goal, and the friction you confirmed in the reconciliation steps:** The quick closer, a consumer with variable or shift income and one or more claims. Goal: agree to a plan she can keep and stop worrying. Confirmed friction: she commits fast without seeing whether the plan fits her real income or what happens after a missed payment, and the plan breaks within 60 days.
-- **Problem you are solving , one sentence describing the specific friction this initiative removes:** Consumers commit to instalment plans without checking whether the amount fits their real income or understanding what happens if they miss a payment, so the plans that count as resolved are the ones that break.
-- **Strategic outcome , what behaviour change do you expect, and how does it map to retention / revenue / churn?:** More consumers choose a plan that fits their income and keep paying after they commit. That maps to revenue through cash actually recovered over the plan’s lifetime, to retention in the sense of plans kept to the end, and against churn in the form of broken plans that return to agents as costlier cases. It also protects client retention, since clients track broken plans and complaints (N-10).
-- **Primary success metric (initiative signal) , the leading indicator that tells you the gap is closing:** Missed payments within 60 days as a share of agreements. Baseline 19.0% (Month 6), target 15.5% or lower, back to the level before the plan screen change. As an earlier signal, I’d ask for first instalment paid on time, which the pack doesn’t contain.
-- **Guardrail metric (product signal) , the metric that must NOT drop; it protects your existing base:** Agreement rate must not drop below 44%, the level before the Month 4 change. Secondary guardrail: agent contact within 7 days must not rise above 31%.
-- **Decision window , how much time or data before you scale, pivot, or kill? minimum threshold to proceed?:** Run an A/B test across all journey starters, with 6 weeks of enrollment followed by the full 60-day observation, so a go/no-go decision about 3.5 months after launch. My rough estimate is that detecting a drop from 19.0% to 15.5% needs about 1,800 agreements per variant, which the current volume of about 3,800 agreements a month reaches in roughly 4 to 6 weeks. Minimum threshold to proceed: missed payments at least 2 percentage points lower than control, with the agreement rate at 44% or higher. Early kill check after 30 days: if the agreement rate falls below 42%, stop and rework.
-- **Draft your full hypothesis sentence , one to three sentences; quote the metric, name the persona, name the outcome:** Based on consumers like N-02 who pick the plan that “looked like the right answer” and miss the second payment, and missed payments rising from 15.6% to 18.4% after the plan screen put the 6-month plan first (19.0% by Month 6), I believe that showing affordability fit and missed-payment consequences before confirmation for quick closers with variable income will result in more plans being kept, as measured by a drop in missed payments within 60 days from 19.0% to 15.5% or lower. I will protect the agreement rate at 44% or higher and will make a go/no-go decision after 6 weeks of enrollment and 60 days of observation.
+## Hypothesis
+
+Based on consumers like N-02 who pick the plan that "looked like the right answer" and miss the second payment, and missed payments rising from 15.6% to 18.4% after the plan screen put the 6-month plan first (19.0% by Month 6), I believe that **showing affordability fit and missed-payment consequences before confirmation** for **quick closers with variable income** will result in **more plans being kept**, as measured by a drop in **missed payments within 60 days from 19.0% to 15.5% or lower**. I will protect the **agreement rate at 44% or higher** and will make a go/no-go decision after **6 weeks of enrollment and 60 days of observation**.
+
+## Starting point from Modules 1 and 2
+
+| Field | Content |
+|---|---|
+| Role | Consumer with one or more open claims and variable shift income who opens the portal on her phone after a reminder and wants it done fast. |
+| Goal | Agree to a monthly plan she can actually keep, so she can stop worrying and get on with her life. |
+| Friction | Picks the shortest plan because it looks right, or lets the chat approve one in a minute, without knowing what happens after a missed payment. Misses the second payment. |
+| Workaround | Guesses her income and takes the fastest path to a yes. When the plan breaks, she calls an agent who asks again for everything she entered online. |
+| Problem Hook (M1) | We must solve a north star that rewards broken plans, with SSR rising while one in five new plans misses a payment within 60 days, by addressing consumers who are pushed to agree quickly instead of agreeing to a plan they understand and can actually keep. |
+| Value Proposition (M1) | For consumers with one or more open claims and irregular income, we will show exactly what they owe across all claims and what happens if something goes wrong, before they commit, so they choose a plan they can keep. |
+
+## Evidence reconciliation
+
+### 1. Where the experience drops (funnel.csv)
+
+**Verdict: nuance, with one partial contradiction.**
+
+| Step | People | % of previous step |
+|---|---|---|
+| Consumers receiving outreach | 100,000 | 100.0% |
+| Entered portal | 38,000 | 38.0% |
+| Started instalment journey | 8,360 | 22.0% |
+| Reached affordability questions | 7,364 | 88.1% |
+| Reached income document step | 5,943 | 80.7% |
+| Reached plan review | 4,630 | 77.9% |
+| Agreement created | 3,846 | 83.1% |
+| No missed payment within 60 days | 3,115 | 81.0% |
+
+- Largest loss inside the journey: document step to plan review, 1,313 people. T-201 reports 853 journeys where the document never arrived, likely a large share, though the pack doesn't confirm the overlap.
+- The commitment moment is not the leak: 83.1% agree at plan review. The leak comes after agreement: 731 plans break within 60 days. This confirms the quick closer pattern.
+- Contradiction in volume: the largest loss happens before the journey starts (38,000 to 8,360). This hypothesis does not address it.
+- **Metric to request:** exit reasons or page behavior between portal entry and journey start.
+
+### 2. What changed over time (monthly_trend.csv)
+
+**Verdict: confirms the core of the hook.**
+
+| Month | Agreement rate | Agent contact 7d | Missed payment 60d | SSR | First plan option |
+|---|---|---|---|---|---|
+| 1 | 43.1% | 33.4% | 15.2% | 31.1% | 12 months |
+| 2 | 43.8% | 33.0% | 15.9% | 31.8% | 12 months |
+| 3 | 44.2% | 32.6% | 15.6% | 32.3% | 12 months |
+| 4 | 45.6% | 31.9% | 18.4% | 33.8% | 6 months |
+| 5 | 46.3% | 31.4% | 18.8% | 34.4% | 6 months |
+| 6 | 46.0% | 31.0% | 19.0% | 34.7% | 6 months |
+
+- Showing the 6-month plan first lifted agreement rate and SSR while missed payments jumped. The north star improved while outcomes got worse.
+- Nuance: agent contact fell steadily before Month 4 as well, so the phone workaround is not growing. The pain shifted from calling to breaking.
+- **Metric to request:** maturity date of each month's 60-day cohort, since Months 5 and 6 may not be fully observed.
+
+### 3. Which users feel it (segments.csv)
+
+**Verdict: confirms the persona, with nuance.**
+
+| Segment | Agreement rate | Agent contact 7d | Missed payment 60d |
+|---|---|---|---|
+| Variable or shift income | 41.6% | 32.7% | 22.5% |
+| Fixed salary | 48.1% | 30.2% | 17.4% |
+| One open claim | 52.1% | 25.6% | 18.1% |
+| Two open claims | 37.7% | 40.0% | 21.4% |
+| Three or more open claims | 27.6% | 43.0% | 21.2% |
+| Used chat assistant | 53.3% | 27.1% | 21.6% |
+| Did not use chat | 44.4% | 31.9% | 18.3% |
+
+- Variable earners carry the highest missed payment rate: the quick closer.
+- Multi-claim consumers show low agreement and high agent contact, with median instalments of €88.73 (two claims) and €114.84 (three or more) vs. €58.72 (one claim). That fits the cautious checker plus an affordability issue.
+- Chat users confirm the speed trap: more agreements, more broken plans. This is a correlation, not proof of cause.
+- Surprise: purchased and client portfolios perform almost identically (missed payments 19.4% vs. 18.8%), despite T-203.
+- **Metric to request:** cross-tab of income pattern by number of claims, since Mara sits in both groups.
+
+## Hypothesis components
+
+| Component | Definition |
+|---|---|
+| Qualitative evidence | "I picked the plan with the lowest number of months because it looked like the right answer. The amount was too high and I missed the second payment." (N-02). Backed by N-05: the chat approved a plan in a minute without explaining late payments. |
+| Quantitative evidence | Missed payments within 60 days rose from 15.6% to 18.4% after the plan screen change, reaching 19.0% (731 of 3,846 agreements) by Month 6. Variable earners miss most at 22.5%. |
+| Problem | Consumers commit without checking whether the amount fits their real income or understanding what happens after a missed payment, so the plans counted as resolved are the ones that break. |
+| Strategic outcome | More consumers choose a plan that fits and keep paying. Revenue: cash actually recovered over the plan's lifetime. Retention: plans kept to the end. Churn: fewer broken plans returning to agents. Also protects client retention (N-10). |
+| Primary success metric | Missed payments within 60 days as a share of agreements. Baseline 19.0%, target 15.5% or lower (pre-change level). Earlier signal to request: first instalment paid on time. |
+| Guardrail metric | Agreement rate must stay at 44% or higher. Secondary: agent contact within 7 days must not rise above 31%. |
+| Decision window | A/B test across all journey starters: 6 weeks enrollment, then 60 days observation, decision about 3.5 months after launch. |
+
+## Decision rules
+
+- **Go:** missed payments at least 2 percentage points lower than control, agreement rate at 44% or higher.
+- **Early kill check after 30 days:** agreement rate below 42% means stop and rework.
+- **Sample size (my estimate):** detecting 19.0% vs. 15.5% needs about 1,800 agreements per variant, reached in roughly 4 to 6 weeks at about 3,800 agreements per month.
+
+## Open questions
+
+1. Why do 78% of portal visitors never start a journey?
+2. How much of the document-step loss is caused by the T-201 upload bug?
+3. Are the 60-day figures for Months 5 and 6 fully mature?
+4. How do variable income and multiple claims interact?
+5. Does the chat cause broken plans, or do riskier consumers choose the chat?
+
+## Key learning
+
+My Module 1 hook said the north star rewards broken plans. The data confirmed that and narrowed it: the leak isn't at commitment (83% agree at plan review) but after it, and it's strongest for variable earners, so my hypothesis targets plans kept, not plans created.
