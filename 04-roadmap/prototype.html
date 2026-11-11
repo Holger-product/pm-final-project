@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan Fit Check · prototype</title>
+<!--
+  Visual values follow "Riverty Classic Design Guidelines" (Confluence, Guidelines V2, last audited 2026-09-22),
+  Layer 3 fallback values. Token names are noted next to each value. The guidelines define a light theme only,
+  so no dark theme is included. Logo and GT Ultra Median are not available here: no logo, fallback serif.
+-->
+<style>
+:root{
+  /* 1. Color */
+  --r-text-strong:#000000; --r-text-regular:#282828; --r-text-soft:#686868; --r-text-inverse:#FFFFFF;
+  --r-background-softest:#FFFFFF; --r-background-softer:#F3F1F0; --r-background-soft:#E7E4E2;
+  --r-background-brand:#527A42; --r-background-brand-softest:#E5EBE3;
+  --r-background-interactive-regular:#282828; --r-background-state-hovered:rgba(40,40,40,.04);
+  --r-background-overlay:rgba(0,0,0,.48);
+  --r-border-softest:#E7E4E2; --r-border-softer:#C9C9C9; --r-border-interactive:#282828;
+  --r-border-brand:#527A42; --r-border-focused:#0071E3;
+  --r-icon-inverse:#FFFFFF;
+  --r-link-enabled:#014BB3;
+  --r-status-error-regular:#B00C15; --r-status-error-soft:#FEF6F6;
+  --r-status-warning-regular:#FF7429; --r-status-warning-soft:#FEF9F5;
+  --r-status-success-regular:#298535; --r-status-success-soft:#F7FDF8;
+  --r-status-info-regular:#3E5C73; --r-status-info-soft:#F8FAFB;
+  /* 3. Shape */
+  --r-radius-none:0; --r-radius-full:999px;
+  /* 2. Typography */
+  --serif:"GT Ultra Median", Georgia, "Times New Roman", serif;
+  --sans:"SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--r-background-softer);color:var(--r-text-regular);font:16px/24px var(--sans);-webkit-font-smoothing:antialiased}
+p{margin:0}
+/* Heading L 32/40 Light -0.75, Heading S 24/30 Light -0.25 */
+h1,h2{font-family:var(--serif);font-weight:300;color:var(--r-text-strong);margin:0}
+h1{font-size:32px;line-height:40px;letter-spacing:-.75px}
+h2{font-size:24px;line-height:30px;letter-spacing:-.25px}
+
+.sample{background:var(--r-status-info-soft);color:var(--r-status-info-regular);font-size:12px;line-height:18px;padding:8px 16px;border-bottom:1px solid var(--r-border-softest)}
+.topbar{background:var(--r-background-softest);border-bottom:1px solid var(--r-border-softest)}
+.topbar div{max-width:560px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+.product{font-family:var(--serif);font-weight:300;font-size:24px;line-height:30px;letter-spacing:-.25px;color:var(--r-text-strong)}
+.steps{font-size:12px;line-height:18px;color:var(--r-text-soft)}
+main{max-width:560px;margin:0 auto;padding:32px 24px 56px}
+/* Progress: r-background-brand for done steps, r-background-soft for upcoming */
+.progress{max-width:560px;margin:0 auto;padding:0 24px 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.progress i{height:4px;background:var(--r-background-soft)}
+.progress i.done{background:var(--r-background-brand)}
+/* Hero accent: r-background-brand with r-text-inverse (guidelines: "hero accents") */
+.hero{background:var(--r-background-brand);color:var(--r-text-inverse)}
+.hero div{max-width:560px;margin:0 auto;padding:40px 24px}
+.hero h1{color:var(--r-text-inverse);font-size:40px;line-height:50px;letter-spacing:-1px}
+.hero p{color:var(--r-text-inverse);margin-top:8px}
+@media (max-width:420px){.hero h1{font-size:32px;line-height:40px;letter-spacing:-.75px}}
+.lede{color:var(--r-text-soft);margin:8px 0 32px}
+
+/* Card: price / key value Heading M serif */
+.claim{background:var(--r-background-softest);padding:16px 20px;margin-bottom:32px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.claim span{color:var(--r-text-soft);font-size:14px;line-height:21px}
+.claim strong{font-family:var(--serif);font-weight:300;font-size:28px;line-height:35px;letter-spacing:-.5px;color:var(--r-text-strong)}
+
+/* 5.2 Input */
+.field{margin-bottom:24px}
+.field label{display:block;font-size:14px;line-height:21px;color:var(--r-text-regular);margin-bottom:8px}
+.field input[type=text]{width:100%;font:16px/24px var(--sans);color:var(--r-text-regular);background:var(--r-background-softest);border:1px solid var(--r-border-softer);border-radius:var(--r-radius-none);padding:12px 14px}
+.field input[type=text]::placeholder{color:var(--r-text-soft)}
+.field input[type=text]:focus{outline:none;border-color:var(--r-border-focused)}
+.field input[aria-invalid=true]{border-color:var(--r-status-error-regular)}
+.field input:disabled{background:var(--r-background-soft);color:var(--r-text-soft)}
+.why{font-size:12px;line-height:18px;color:var(--r-text-soft);margin-top:8px}
+.err{font-size:12px;line-height:18px;color:var(--r-status-error-regular);margin-top:4px}
+.err:empty{display:none}
+.same{display:flex;gap:8px;align-items:center;font-size:14px;line-height:21px;margin:-8px 0 24px}
+.same input{width:18px;height:18px;accent-color:var(--r-background-brand)}
+
+/* Status notices: soft variant background, regular variant accent */
+.notice{padding:12px 16px;font-size:14px;line-height:21px;margin-bottom:24px;border-left:4px solid}
+.notice.warn{background:var(--r-status-warning-soft);border-color:var(--r-status-warning-regular)}
+
+/* 5.1 Button: uppercase, 48px, square, no shadow */
+button{font:16px/20px var(--sans);text-transform:uppercase;border-radius:var(--r-radius-none);cursor:pointer;min-height:48px;padding:14px 24px}
+.primary{width:100%;background:var(--r-background-interactive-regular);color:var(--r-text-inverse);border:0}
+.primary:disabled{background:var(--r-background-soft);color:var(--r-text-soft);cursor:not-allowed}
+.secondary{width:100%;background:var(--r-background-softest);color:var(--r-text-regular);border:1px solid var(--r-border-interactive)}
+.link{background:none;border:0;padding:0;min-height:0;text-transform:none;font-size:16px;line-height:24px;color:var(--r-link-enabled);text-decoration:underline;cursor:pointer}
+:focus-visible{outline:2px solid var(--r-border-focused);outline-offset:2px}
+.back{margin-bottom:24px;font-size:14px}
+
+.budget{font-size:14px;line-height:21px;color:var(--r-text-soft);margin:0 0 24px}
+.budget b{color:var(--r-text-strong);font-weight:600}
+
+/* 5.5 List item / selection row */
+fieldset{border:0;padding:0;margin:0}
+legend{font-size:14px;line-height:21px;color:var(--r-text-soft);margin-bottom:8px;padding:0}
+.plans{list-style:none;margin:0 0 24px;padding:0;display:grid;gap:8px}
+.plan{position:relative;display:block;background:var(--r-background-softest);border:1px solid var(--r-border-softer);padding:16px;cursor:pointer}
+.plan::after{content:"";position:absolute;inset:0;pointer-events:none}
+.plan:hover::after{background:var(--r-background-state-hovered)}
+.plan:has(input:checked){background:var(--r-background-brand-softest);border:2px solid var(--r-border-brand);padding:15px}
+.plan input{position:absolute;opacity:0;pointer-events:none}
+.plan:has(input:focus-visible){outline:2px solid var(--r-border-focused);outline-offset:2px}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.amt{font-family:var(--serif);font-weight:300;font-size:24px;line-height:30px;letter-spacing:-.25px;color:var(--r-text-strong)}
+.per{font-family:var(--sans);font-size:14px;line-height:21px;color:var(--r-text-soft);letter-spacing:0}
+.term{font-size:14px;line-height:21px;color:var(--r-text-soft)}
+/* Badge: r-radius-full pill, status tokens */
+.tag{font-size:12px;line-height:18px;font-weight:600;padding:2px 12px;border-radius:var(--r-radius-full);white-space:nowrap;border:1px solid;color:var(--r-text-regular)}
+.tag.Fits{background:var(--r-status-success-soft);border-color:var(--r-status-success-regular);color:var(--r-status-success-regular)}
+.tag.Tight{background:var(--r-status-warning-soft);border-color:var(--r-status-warning-regular)}
+.tag.Risky{background:var(--r-status-error-soft);border-color:var(--r-status-error-regular);color:var(--r-status-error-regular)}
+.meter{height:4px;background:var(--r-background-soft);margin:12px 0 8px;position:relative}
+.meter i{position:absolute;inset:0 auto 0 0}
+.Fits .meter i{background:var(--r-status-success-regular)}
+.Tight .meter i{background:var(--r-status-warning-regular)}
+.Risky .meter i{background:var(--r-status-error-regular)}
+.reason{font-size:14px;line-height:21px}
+
+/* 5.8 Accordion */
+details{background:var(--r-background-softest);border:1px solid var(--r-border-softer);margin-bottom:24px}
+summary{cursor:pointer;padding:16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-weight:400;font-size:20px}
+details[open] summary::after{content:"\2212"}
+.consequences{padding:0 16px 16px;font-size:14px;line-height:21px}
+.consequences ul{margin:8px 0 0;padding-left:20px}
+.consequences li{margin-bottom:4px}
+.placeholder{display:inline-block;font-size:12px;line-height:18px;background:var(--r-status-warning-soft);border:1px solid var(--r-status-warning-regular);padding:2px 8px;margin-bottom:8px}
+.gate{font-size:12px;line-height:18px;color:var(--r-text-soft);text-align:center;margin-top:8px}
+.gate:empty{display:none}
+.agent{background:var(--r-background-softest);border:1px solid var(--r-border-softer);padding:16px;margin-bottom:24px;font-size:14px;line-height:21px}
+.agent.hl{background:var(--r-status-info-soft);border-color:var(--r-status-info-regular)}
+.agent .link{font-size:14px;line-height:21px}
+
+.summary{background:var(--r-background-softest);margin:32px 0}
+.summary div{display:flex;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--r-border-softest);font-size:14px;line-height:21px}
+.summary div:last-child{border-bottom:0}
+.summary b{font-weight:600;color:var(--r-text-strong)}
+.summary .big b{font-family:var(--serif);font-weight:300;font-size:28px;line-height:35px;letter-spacing:-.5px}
+.check{width:48px;height:48px;border-radius:var(--r-radius-full);background:var(--r-background-brand);color:var(--r-icon-inverse);display:grid;place-items:center;font-size:24px;margin-bottom:24px}
+
+/* 5.6 Dialog */
+dialog{border:0;border-radius:var(--r-radius-none);padding:24px;max-width:420px;background:var(--r-background-softest);color:var(--r-text-regular)}
+dialog::backdrop{background:var(--r-background-overlay)}
+dialog .actions{display:grid;gap:8px;margin-top:24px}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:no-preference){ .screen{animation:in .2s ease-out} @keyframes in{from{opacity:0}} }
+</style>
+</head>
+<body>
+<div class="sample">Prototype with sample data. Not a live Riverty service, nothing you enter is stored or sent.</div>
+<header class="topbar"><div><span class="product">Back in Flow</span><span class="steps" id="stepLabel">Step 1 of 3</span></div>
+<div class="progress" aria-hidden="true"><i class="done"></i><i></i><i></i></div></header>
+<section class="hero"><div><h1 id="heroTitle" tabindex="-1">Your Monthly Budget</h1><p id="heroLede">Three quick questions, so we only suggest plans you can keep.</p></div></section>
+<main>
+
+<!-- Screen 1: entry -->
+<section id="s1" class="screen">
+  <div class="claim"><span>Open amount</span><strong id="claimAmt"></strong></div>
+  <form id="budgetForm" novalidate>
+    <div class="field">
+      <label for="normal">Income in a normal month (€)</label>
+      <input type="text" inputmode="decimal" id="normal" autocomplete="off" aria-describedby="normalWhy normalErr">
+      <p class="why" id="normalWhy">We use this to see what a typical month looks like. It's only used to suggest a plan.</p>
+      <p class="err" id="normalErr" aria-live="polite"></p>
+    </div>
+    <label class="same"><input type="checkbox" id="same"> My income is about the same every month</label>
+    <div class="field">
+      <label for="low">Income in a low month (€)</label>
+      <input type="text" inputmode="decimal" id="low" autocomplete="off" aria-describedby="lowWhy lowErr">
+      <p class="why" id="lowWhy">If your pay changes with shifts, plans are based on your lower months, so they still work when money is tight.</p>
+      <p class="err" id="lowErr" aria-live="polite"></p>
+    </div>
+    <div class="field">
+      <label for="fixed">Fixed costs per month (€)</label>
+      <input type="text" inputmode="decimal" id="fixed" autocomplete="off" aria-describedby="fixedWhy fixedErr">
+      <p class="why" id="fixedWhy">Rent, energy, insurance, other payments. A rough number is fine.</p>
+      <p class="err" id="fixedErr" aria-live="polite"></p>
+    </div>
+    <div class="notice warn" id="lowHigher" hidden>Your low month is higher than your normal month. Please check the two numbers. You can still continue.</div>
+    <button type="submit" class="primary">Show my plans</button>
+  </form>
+</section>
+
+<!-- Screen 2: core -->
+<section id="s2" class="screen" hidden>
+  <button class="link back" id="toBudget">Change my budget</button>
+  <p class="budget" id="budgetLine"></p>
+  <div class="agent" id="agentBox" hidden></div>
+  <fieldset>
+    <legend>Choose a plan</legend>
+    <ul class="plans" id="plans"></ul>
+  </fieldset>
+  <details id="missPanel" hidden>
+    <summary>What if I miss a payment?</summary>
+    <div class="consequences" id="missText"></div>
+  </details>
+  <button class="primary" id="confirmBtn" disabled>Confirm this plan</button>
+  <p class="gate" id="gateHint">Choose a plan to continue.</p>
+</section>
+
+<!-- Screen 3: confirmation -->
+<section id="s3" class="screen" hidden>
+  <div class="check" aria-hidden="true">✓</div>
+  <div class="summary" id="summary"></div>
+  <h2>If You Miss a Payment</h2>
+  <div class="consequences" style="padding:12px 0 24px" id="missSummary"></div>
+  <div class="agent">Something changed? <button class="link" type="button">Talk to an agent</button> and we'll look at your plan together.</div>
+  <button class="secondary" id="restart">Start again</button>
+</section>
+
+<dialog id="riskDialog" aria-labelledby="riskTitle">
+  <h2 id="riskTitle">This Plan May Be Hard to Keep</h2>
+  <p id="riskText" style="margin-top:12px;font-size:14px"></p>
+  <div class="actions">
+    <button class="primary" id="riskSafer">Show me a safer plan</button>
+    <button class="secondary" id="riskYes">Confirm anyway</button>
+  </div>
+</dialog>
+</main>
+
+<script>
+// Sample data and prototype thresholds (not policy)
+const CLAIM = 1200;
+const TERMS = [3, 6, 12, 18];
+const FITS = 0.40, TIGHT = 0.70, MAX = 20000;
+const MISS_TEXT = `<span class="placeholder">Sample text, to be confirmed by Legal</span>
+<ul>
+<li>We send you a reminder a few days before each payment.</li>
+<li>If a payment doesn't arrive, we contact you first and give you time to pay or change the plan.</li>
+<li>Your plan stays active after one late payment if you get in touch.</li>
+<li>You can always talk to an agent to adjust the amount or the date.</li>
+</ul>`;
+
+const $ = id => document.getElementById(id);
+const HERO = {
+  s1:["Your Monthly Budget","Three quick questions, so we only suggest plans you can keep."],
+  s2:["Plans That Fit You","Each plan shows how it fits your budget in a low month."],
+  s3:["Your Plan Is Set Up","Here's everything in one place."]
+};
+const eur = n => n.toLocaleString("en-IE",{style:"currency",currency:"EUR",maximumFractionDigits:n%1?2:0});
+const state = { remaining:0, plans:[], selected:null, openedFor:null };
+
+$("claimAmt").textContent = eur(CLAIM);
+
+function parse(v){ const t=v.trim().replace(/\s/g,"").replace(",","."); return t===""?NaN:Number(t); }
+function check(id, label){
+  const el=$(id), err=$(id+"Err"), raw=el.value.trim(), n=parse(el.value);
+  let msg="";
+  if(raw==="") msg=`Enter ${label}, a rough number is fine.`;
+  else if(isNaN(n)) msg="Use numbers only, for example 1850.";
+  else if(n<0) msg="This can't be below zero.";
+  else if(n>MAX) msg=`That's more than ${eur(MAX)} a month. Please check the number.`;
+  err.textContent=msg; el.setAttribute("aria-invalid", msg? "true":"false");
+  return msg? null : n;
+}
+
+$("same").addEventListener("change", e=>{
+  $("low").disabled = e.target.checked;
+  if(e.target.checked) $("low").value=$("normal").value;
+});
+$("normal").addEventListener("input", ()=>{ if($("same").checked) $("low").value=$("normal").value; });
+
+$("budgetForm").addEventListener("submit", e=>{
+  e.preventDefault();
+  const normal=check("normal","your normal monthly income");
+  const low=check("low","your income in a low month");
+  const fixed=check("fixed","your fixed costs");
+  if(normal===null||low===null||fixed===null){
+    const firstBad=document.querySelector('[aria-invalid="true"]'); if(firstBad) firstBad.focus(); return;
+  }
+  $("lowHigher").hidden = !(low>normal);
+  if(low>normal && !$("lowHigher").dataset.seen){ $("lowHigher").dataset.seen="1"; return; }
+  state.remaining = low - fixed;
+  buildPlans(); show("s2");
+});
+
+function label(ratio){ return ratio<=FITS?"Fits":ratio<=TIGHT?"Tight":"Risky"; }
+
+function buildPlans(){
+  const r=state.remaining, order={Fits:0,Tight:1,Risky:2};
+  state.plans = TERMS.map(m=>{
+    const amt=Math.round(CLAIM/m*100)/100;
+    const ratio = r>0 ? amt/r : Infinity;
+    return {id:"p"+m, months:m, amt, ratio, label:label(ratio)};
+  });
+  const allRisky = state.plans.every(p=>p.label==="Risky");
+  state.plans.sort((a,b)=> allRisky ? b.months-a.months : (order[a.label]-order[b.label]) || (a.months-b.months));
+  state.selected=null; state.openedFor=null;
+
+  $("budgetLine").innerHTML = r>0
+    ? `Left after fixed costs in a low month: <b>${eur(r)}</b>`
+    : `In a low month, your fixed costs use up all of your income.`;
+
+  const agent=$("agentBox");
+  if(r<=0 || allRisky){
+    agent.hidden=false; agent.classList.add("hl");
+    agent.innerHTML = `None of these plans fits your budget right now. <button class="link" type="button">Talk to an agent</button> to find an amount that works. You can still choose a plan below.`;
+  } else { agent.hidden=true; agent.classList.remove("hl"); }
+
+  $("plans").innerHTML = state.plans.map(p=>{
+    const pct = isFinite(p.ratio) ? Math.round(p.ratio*100) : null;
+    const reason = pct===null
+      ? "There's no money left after fixed costs in a low month."
+      : `${eur(p.amt)} is ${pct}% of what's left after fixed costs.`;
+    const w = pct===null?100:Math.min(pct,100);
+    return `<li><label class="plan ${p.label}">
+      <input type="radio" name="plan" value="${p.id}">
+      <div class="row"><span class="amt">${eur(p.amt)}<span class="per"> / month</span></span><span class="tag ${p.label}">${p.label}</span></div>
+      <div class="term">${p.months} payments, total ${eur(CLAIM)}</div>
+      <div class="meter" aria-hidden="true"><i style="width:${w}%"></i></div>
+      <p class="reason">${reason}</p>
+    </label></li>`;
+  }).join("");
+
+  document.querySelectorAll('input[name=plan]').forEach(i=>i.addEventListener("change", ()=>{
+    state.selected = state.plans.find(p=>p.id===i.value);
+    const panel=$("missPanel"); panel.hidden=false; panel.open=false;
+    $("missText").innerHTML = `<p>For your plan of ${eur(state.selected.amt)} per month:</p>${MISS_TEXT}`;
+    updateGate();
+  }));
+  $("missPanel").hidden=true; updateGate();
+}
+
+$("missPanel").addEventListener("toggle", ()=>{
+  if($("missPanel").open && state.selected){ state.openedFor = state.selected.id; updateGate(); }
+});
+
+function updateGate(){
+  const ok = state.selected && state.openedFor===state.selected.id;
+  $("confirmBtn").disabled = !ok;
+  $("gateHint").textContent = !state.selected ? "Choose a plan to continue."
+    : ok ? "" : "Open “What if I miss a payment?” to continue.";
+}
+
+$("confirmBtn").addEventListener("click", ()=>{
+  const p=state.selected; if(!p) return;
+  if(p.label==="Risky"){
+    $("riskText").textContent = isFinite(p.ratio)
+      ? `${eur(p.amt)} a month is ${Math.round(p.ratio*100)}% of what's left in a low month. Plans like this often break in the first two months.`
+      : `In a low month there's nothing left after fixed costs, so any payment may be hard to keep.`;
+    $("riskDialog").showModal(); return;
+  }
+  finish();
+});
+$("riskSafer").addEventListener("click", ()=>{ $("riskDialog").close(); $("plans").querySelector("input").focus(); });
+$("riskYes").addEventListener("click", ()=>{ $("riskDialog").close(); finish(); });
+
+function finish(){
+  const p=state.selected, due=new Date(); due.setDate(due.getDate()+14);
+  $("summary").innerHTML = `
+    <div class="big"><span>Monthly amount</span><b>${eur(p.amt)}</b></div>
+    <div><span>Number of payments</span><b>${p.months}</b></div>
+    <div><span>First payment due</span><b>${due.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})}</b></div>
+    <div><span>Fit with your budget</span><b>${p.label}</b></div>`;
+  $("missSummary").innerHTML = MISS_TEXT;
+  show("s3");
+}
+
+$("toBudget").addEventListener("click", ()=>show("s1"));
+$("restart").addEventListener("click", ()=>{
+  $("budgetForm").reset(); $("low").disabled=false; $("lowHigher").hidden=true; delete $("lowHigher").dataset.seen;
+  ["normal","low","fixed"].forEach(id=>{ $(id+"Err").textContent=""; $(id).setAttribute("aria-invalid","false"); });
+  show("s1");
+});
+
+function show(id){
+  ["s1","s2","s3"].forEach(s=>$(s).hidden = s!==id);
+  const n = Number(id.slice(1)), copy = HERO[id];
+  $("stepLabel").textContent = "Step " + n + " of 3";
+  document.querySelectorAll(".progress i").forEach((el,i)=>el.classList.toggle("done", i<n));
+  $("heroTitle").textContent = copy[0]; $("heroLede").textContent = copy[1];
+  window.scrollTo(0,0);
+  $("heroTitle").focus({preventScroll:true});
+}
+</script>
+</body>
+</html>
