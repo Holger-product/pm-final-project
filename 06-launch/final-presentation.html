@@ -1,0 +1,1654 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Back in Flow: Final Presentation</title>
+<meta name="description" content="Final project presentation, Product School Product Management certification, Riverty BU Collection case. Sample data, illustrative, not Riverty research.">
+<style>
+/* Riverty brand layer for an HTML slide deck.
+   Sources, Riverty brand bundle v0.11.0 via rty-aip-brand-plugin:
+   colors from BRAND.md section 4 and colors.md; type scale and margins from typography.md
+   (HTML / CSS slide type scale, 1920 x 1080); layout and density from presentations.md.
+   Fonts are referenced by name through local() only. No font files are embedded. */
+
+@font-face{font-family:"Rty Headline";font-weight:400;font-display:swap;
+  src:local("GT Ultra Median Light"),local("GTUltra-MedianLight"),local("Skeena Regular"),local("Skeena-Regular"),local("Skeena")}
+@font-face{font-family:"Rty Subhead";font-weight:400;font-display:swap;
+  src:local("GT Ultra Median Light"),local("GTUltra-MedianLight"),local("Skeena Bold"),local("Skeena-Bold")}
+@font-face{font-family:"Rty Body";font-weight:400;font-display:swap;
+  src:local("GT Ultra Standard Light"),local("GTUltra-StandardLight"),local("Skeena Regular"),local("Skeena-Regular"),local("Skeena")}
+@font-face{font-family:"Rty Strong";font-weight:700;font-display:swap;
+  src:local("GT Ultra Standard Bold"),local("GTUltra-StandardBold"),local("Skeena Bold"),local("Skeena-Bold")}
+
+:root{
+  /* Brand colors (BRAND.md section 4, colors.md). Only these values and the listed tints are used. */
+  --vanguard:#527A42;
+  --charcoal:#282828;
+  --haze:#E7E4E2;
+  --ember:#EF706B;
+  --vanguard-30:#C8D7C2;
+  --charcoal-70:#686868;
+  --charcoal-25:#C9C9C9;
+  --haze-50:#F3F1F0;
+
+  /* Font roles (BRAND.md section 6): GT Ultra first, Skeena as fallback, Lucida Sans as last resort */
+  --f-head:"Rty Headline","Lucida Sans","Lucida Sans Unicode","Lucida Grande",sans-serif;
+  --f-sub:"Rty Subhead","Lucida Sans","Lucida Sans Unicode","Lucida Grande",sans-serif;
+  --f-body:"Rty Body","Lucida Sans","Lucida Sans Unicode","Lucida Grande",sans-serif;
+  --f-strong:"Rty Strong","Lucida Sans","Lucida Sans Unicode","Lucida Grande",sans-serif;
+
+  /* One canvas unit = 1px on the 1920 x 1080 reference slide */
+  --u:min(calc(100vw / 1920), calc(100vh / 1080));
+
+  /* typography.md, HTML / CSS slide type scale */
+  --t-display:calc(120 * var(--u));
+  --t-title:calc(84 * var(--u));
+  --t-subhead:calc(52 * var(--u));
+  --t-body:calc(34 * var(--u));
+  --t-card-title:calc(42 * var(--u));
+  --t-card-body:calc(28 * var(--u));
+  --t-label:calc(24 * var(--u));
+
+  /* typography.md slide margins */
+  --mx:calc(80 * var(--u));
+  --mt:calc(80 * var(--u));
+  --mb:calc(80 * var(--u));
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-snap-type:y mandatory;overflow-y:scroll;scroll-behavior:auto}
+html:has(dialog[open]){overflow:hidden}
+body{margin:0;background:var(--haze);color:var(--charcoal);font-family:var(--f-body);font-weight:400;font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,h5,p,ul,ol,dl,dd,blockquote,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+strong,b{font-family:var(--f-strong);font-weight:700}
+a{color:inherit;text-decoration-thickness:max(1px,calc(2 * var(--u)));text-underline-offset:.18em}
+a:focus-visible,button:focus-visible{outline:max(2px,calc(3 * var(--u))) solid currentColor;outline-offset:max(2px,calc(4 * var(--u)))}
+
+
+/* Live prototype slide: 04-roadmap/prototype.html embedded via srcdoc */
+.demo{display:grid;grid-template-columns:auto 1fr;column-gap:calc(64 * var(--u));height:100%;min-height:0}
+.demo .phonewrap{height:100%;min-height:0;display:flex;align-items:center;justify-content:center}
+/* Device mockup: user supplied phone frame image (389 x 800, transparent screen), screen area measured from the image */
+.phone{position:relative}
+.phone .frameimg{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;user-select:none}
+.phone .screen{position:absolute;left:4.1%;top:1.7%;width:91.9%;height:96.8%;overflow:hidden;background:#F8FAFB;border-radius:13.5% / 6.2%;z-index:1}
+.phone .vp{position:absolute;top:0;left:0;width:390px;height:844px;transform-origin:0 0;background:#F3F1F0}
+.phone .status{position:relative;height:54px;display:flex;justify-content:space-between;align-items:center;padding:6px 30px 0 40px;background:#F8FAFB;color:#000;font:600 16px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.phone .status .icons{display:flex;gap:6px;align-items:center}
+.phone iframe{display:block;width:390px;height:790px;border:0;background:#F3F1F0}
+.phone .homebar{position:absolute;bottom:9px;left:50%;transform:translateX(-50%);width:136px;height:5px;border-radius:3px;background:#000;opacity:.85;pointer-events:none}
+.demo .side{display:flex;flex-direction:column;gap:calc(28 * var(--u));min-width:0}
+.demo .side .lead{color:var(--charcoal)}
+.demo .try li{font-size:var(--t-card-body);line-height:1.45;margin-bottom:calc(10 * var(--u))}
+.demo .actions{display:flex;flex-wrap:wrap;gap:calc(16 * var(--u))}
+.demo .hint{font-size:var(--t-label);line-height:1.4}
+/* Slides */
+.slide{position:relative;height:100vh;min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.stage{position:relative;width:calc(1920 * var(--u));height:calc(1080 * var(--u));padding:var(--mt) var(--mx) var(--mb);display:flex;flex-direction:column}
+.t-haze{background:var(--haze);color:var(--charcoal)}
+.t-vanguard{background:var(--vanguard);color:var(--haze)}
+.t-charcoal{background:var(--charcoal);color:var(--haze)}
+.t-split{background:linear-gradient(90deg,var(--vanguard) 50%,var(--haze) 50%);color:var(--charcoal)}
+
+/* Type roles */
+.display{font-family:var(--f-head);font-size:var(--t-display);line-height:1;letter-spacing:-.02em}
+.title{font-family:var(--f-head);font-size:var(--t-title);line-height:1.08;letter-spacing:-.02em;color:var(--vanguard);margin-top:calc(14 * var(--u))}
+.label{font-family:var(--f-strong);font-weight:700;font-size:var(--t-label);line-height:1.2;letter-spacing:.1em;text-transform:uppercase}
+.lead{font-family:var(--f-head);font-size:var(--t-body);line-height:1.38}
+.copy{font-size:var(--t-card-body);line-height:1.5}
+.small{font-size:var(--t-label);line-height:1.38}
+.file{font-family:var(--f-strong);font-weight:700;letter-spacing:.01em;word-break:break-word}
+
+/* Top bar: eyebrow left, text label in the logo position right (no logo files in this public repo) */
+.topbar{display:flex;justify-content:space-between;align-items:baseline;gap:calc(40 * var(--u))}
+.eyebrow{color:var(--vanguard)}
+.brandlabel{color:var(--charcoal)}
+.t-vanguard .eyebrow,.t-vanguard .brandlabel,.t-charcoal .eyebrow,.t-charcoal .brandlabel{color:var(--haze)}
+
+.body{flex:1;min-height:0;margin-top:calc(34 * var(--u));margin-bottom:calc(14 * var(--u))}
+
+/* Footer: disclaimer is functionally required on every slide (CLAUDE.md) */
+.foot{position:absolute;left:var(--mx);right:var(--mx);bottom:calc(22 * var(--u));height:calc(52 * var(--u));display:flex;align-items:center;justify-content:space-between;gap:calc(32 * var(--u));font-size:var(--t-label);line-height:1.2;color:var(--charcoal-70)}
+.t-vanguard .foot,.t-charcoal .foot{color:var(--haze)}
+.src-btn{font-family:var(--f-strong);font-weight:700;font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;line-height:1;padding:calc(13 * var(--u)) calc(20 * var(--u));border:0;border-radius:0;background:var(--charcoal);color:var(--haze);cursor:pointer}
+.src-btn:hover{background:var(--vanguard)}
+.src-btn:focus-visible{outline-color:var(--charcoal)}
+
+/* Shared blocks: sharp rectangles only, no rounded corners, no shadows (presentations.md) */
+.card{background:var(--haze-50);padding:calc(28 * var(--u)) calc(32 * var(--u))}
+.card .label,.block .label{margin-bottom:calc(14 * var(--u))}
+.callout{background:var(--vanguard);color:var(--haze);padding:calc(40 * var(--u)) calc(44 * var(--u))}
+.callout .label{color:var(--haze);margin-bottom:calc(18 * var(--u))}
+.badge{display:inline-block;font-family:var(--f-strong);font-weight:700;font-size:var(--t-label);line-height:1.2;letter-spacing:.1em;text-transform:uppercase;padding:calc(7 * var(--u)) calc(14 * var(--u));background:var(--ember);color:var(--charcoal)}
+.badge.b-vanguard{background:var(--vanguard);color:var(--haze)}
+.badge.b-charcoal{background:var(--charcoal);color:var(--haze)}
+.stat{display:block;font-family:var(--f-head);font-size:var(--t-title);line-height:1;letter-spacing:-.02em;color:var(--vanguard);font-variant-numeric:lining-nums tabular-nums;white-space:nowrap}
+.cap{display:block;font-size:var(--t-label);line-height:1.35;margin-top:calc(12 * var(--u))}
+.tile{background:var(--haze-50);padding:calc(24 * var(--u)) calc(28 * var(--u));display:flex;flex-direction:column}
+.tile .label{margin-bottom:calc(14 * var(--u))}
+.sq{list-style:none}
+.sq li{position:relative;padding-left:calc(28 * var(--u))}
+.sq li::before{content:"";position:absolute;left:0;top:.62em;width:calc(10 * var(--u));height:calc(10 * var(--u));background:currentColor}
+
+/* Cover */
+.cover .main{flex:1;display:flex;flex-direction:column;justify-content:center;gap:calc(48 * var(--u));padding-bottom:calc(40 * var(--u))}
+.cover .pitch{font-family:var(--f-head);font-size:var(--t-subhead);line-height:1.3;max-width:calc(1560 * var(--u))}
+.cover .meta{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:calc(48 * var(--u));margin-bottom:calc(36 * var(--u))}
+.cover .meta dt{margin-bottom:calc(10 * var(--u))}
+.cover .meta dd{font-size:var(--t-card-body);line-height:1.4}
+.keys{text-align:right}
+
+/* Slide 5, Strategy */
+.strategy{display:grid;grid-template-columns:1fr 1fr;column-gap:calc(68 * var(--u))}
+.strategy .left{display:flex;flex-direction:column;gap:calc(44 * var(--u))}
+.strategy .right{display:flex;flex-direction:column;gap:calc(22 * var(--u))}
+.strategy .callout{padding:calc(34 * var(--u)) calc(40 * var(--u))}
+.strategy .callout p{font-size:var(--t-card-body);line-height:1.45}
+.note{display:flex;gap:calc(16 * var(--u));align-items:flex-start;font-size:var(--t-label);line-height:1.4}
+.note .badge{flex:none}
+
+/* Slide 6, Research */
+.research{display:grid;grid-template-rows:auto 1fr;row-gap:calc(36 * var(--u))}
+.research .top{display:grid;grid-template-columns:7.4fr 4.6fr;column-gap:calc(48 * var(--u))}
+.steps{counter-reset:s;display:flex;flex-direction:column;gap:calc(10 * var(--u))}
+.steps li{counter-increment:s;display:grid;grid-template-columns:calc(52 * var(--u)) 1fr;font-size:var(--t-card-body);line-height:1.42}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--f-strong);font-weight:700;font-size:var(--t-label);letter-spacing:.06em;color:var(--vanguard);padding-top:.18em}
+.quote blockquote{font-family:var(--f-head);font-size:var(--t-card-body);line-height:1.5}
+.quote .cite{margin-top:calc(14 * var(--u))}
+.journey .head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:calc(16 * var(--u))}
+.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:calc(20 * var(--u));counter-reset:j}
+.stages li{background:var(--haze-50);padding:calc(24 * var(--u)) calc(26 * var(--u));display:flex;flex-direction:column;gap:calc(10 * var(--u))}
+.stages .num{display:flex;justify-content:space-between;align-items:center;gap:calc(10 * var(--u));min-height:calc(40 * var(--u))}
+.stages .num .label{color:var(--vanguard)}
+.stages h4{font-family:var(--f-sub);font-size:var(--t-body);line-height:1.18;font-weight:400}
+.stages p{font-size:var(--t-label);line-height:1.4}
+.stages li.misery{background:var(--charcoal);color:var(--haze)}
+.stages li.misery .num .label{color:var(--haze)}
+
+/* Title row with a side element (Blueprint prototype label, Validation A / B) */
+.titlerow{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(48 * var(--u))}
+.titlerow .title{flex:none}
+.proto-tag{display:flex;align-items:center;gap:calc(16 * var(--u));margin-bottom:calc(10 * var(--u))}
+.proto-tag .file{font-size:var(--t-card-body);line-height:1.2}
+.titlerow.top{align-items:flex-start}
+.abline{display:flex;flex-direction:column;gap:calc(10 * var(--u));margin-top:calc(18 * var(--u))}
+.abline div{display:grid;grid-template-columns:calc(236 * var(--u)) 1fr;column-gap:calc(16 * var(--u));align-items:center}
+.abline dt{display:flex}
+.abline dd{font-size:var(--t-label);line-height:1.35}
+
+/* Slide 7, Blueprint */
+.blueprint{display:grid;grid-template-rows:1fr auto;row-gap:calc(20 * var(--u))}
+.moscow{display:grid;grid-template-columns:2.6fr 1fr 1fr 1.15fr;gap:calc(18 * var(--u));min-height:0}
+.moscow .col{background:var(--haze-50);padding:calc(22 * var(--u)) calc(24 * var(--u))}
+.moscow .col.must{background:var(--vanguard-30)}
+.moscow .col .label{display:flex;justify-content:space-between;margin-bottom:calc(14 * var(--u))}
+.moscow ul{display:flex;flex-direction:column;gap:calc(7 * var(--u));font-size:var(--t-label);line-height:1.28}
+.prd{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:calc(18 * var(--u))}
+.prd .card{padding:calc(22 * var(--u)) calc(26 * var(--u))}
+.prd .card p{font-size:var(--t-label);line-height:1.38}
+.fitscale{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(8 * var(--u))}
+.fitscale li{font-size:var(--t-label);line-height:1.3;padding:calc(8 * var(--u)) calc(14 * var(--u));background:var(--haze)}
+.fitscale strong,.fitscale span{display:block}
+.prd .card p.chipnote{margin-top:calc(10 * var(--u));color:var(--charcoal-70)}
+
+/* Slide 8, Validation */
+.validation{display:grid;grid-template-rows:auto auto 1fr;row-gap:calc(16 * var(--u))}
+.hyp{display:grid;grid-template-columns:calc(230 * var(--u)) 1fr;column-gap:calc(28 * var(--u));padding:calc(26 * var(--u)) calc(36 * var(--u))}
+.hyp .label{margin:calc(4 * var(--u)) 0 0}
+.hyp p{font-size:var(--t-card-body);line-height:1.45}
+.vtiles{display:grid;grid-template-columns:1.55fr 1fr 1fr 1fr 1.3fr;gap:calc(16 * var(--u))}
+.vtiles .tile{padding:calc(18 * var(--u)) calc(24 * var(--u))}
+.vtiles .tile .label{margin-bottom:calc(8 * var(--u))}
+.vtiles .stat{font-size:calc(64 * var(--u));margin-top:auto}
+.vtiles .mname{font-family:var(--f-sub);font-size:var(--t-card-body);line-height:1.25;color:var(--vanguard);margin-top:auto}
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(16 * var(--u))}
+.rules .card{padding:calc(20 * var(--u)) calc(24 * var(--u))}
+.rules .badge{margin-bottom:calc(10 * var(--u))}
+.rules p{font-size:var(--t-label);line-height:1.38}
+
+/* Slide 9, Launch */
+.launch{display:grid;grid-template-rows:auto auto 1fr;row-gap:calc(24 * var(--u))}
+.gtm{display:grid;grid-template-columns:1fr 1.45fr 1fr;gap:calc(18 * var(--u))}
+.gtm .card{padding:calc(22 * var(--u)) calc(28 * var(--u))}
+.gtm .big{font-family:var(--f-sub);font-size:var(--t-card-title);line-height:1.1;color:var(--vanguard);margin-bottom:calc(8 * var(--u))}
+.gtm p.small{line-height:1.36}
+.channels{display:grid;grid-template-columns:auto 1fr;column-gap:calc(32 * var(--u));align-items:center}
+.tags{display:flex;flex-wrap:wrap;gap:calc(12 * var(--u))}
+.tags li{font-size:var(--t-label);line-height:1.3;padding:calc(10 * var(--u)) calc(18 * var(--u));background:var(--haze-50)}
+.tags li strong{color:var(--vanguard);margin-right:calc(6 * var(--u))}
+.tags li.out{background:transparent;box-shadow:inset 0 0 0 max(1px,calc(2 * var(--u))) var(--charcoal)}
+.dash{display:flex;flex-direction:column}
+.dash .head{margin-bottom:calc(10 * var(--u))}
+.kpis{display:grid;grid-template-columns:1fr 1fr 1fr 1.32fr;gap:calc(18 * var(--u));flex:1}
+.kpis .stat{font-size:calc(72 * var(--u));margin-top:auto}
+.kpis .tile{padding:calc(22 * var(--u)) calc(26 * var(--u))}
+.bad{background:var(--charcoal);color:var(--haze);padding:calc(26 * var(--u)) calc(30 * var(--u));display:flex;flex-direction:column;gap:calc(16 * var(--u))}
+.bad p{font-family:var(--f-head);font-size:var(--t-card-body);line-height:1.42}
+.bad .badge{align-self:flex-start}
+
+/* Slide 10, Story (split slide: 50% Vanguard, 50% Haze) */
+.t-split .eyebrow,.t-split .story-left{color:var(--haze)}
+.t-split .title{color:var(--haze)}
+.t-split .foot{color:var(--haze)}
+.story{display:grid;grid-template-columns:1fr 1fr;column-gap:calc(160 * var(--u))}
+.story-left{display:flex;flex-direction:column;gap:calc(26 * var(--u))}
+.story-left .copy{font-size:var(--t-card-body);line-height:1.5}
+.statement{font-family:var(--f-head);font-size:var(--t-subhead);line-height:1.2;letter-spacing:-.01em;margin-top:calc(30 * var(--u))}
+.story-right{display:flex;flex-direction:column;gap:calc(34 * var(--u));margin-top:calc(-118 * var(--u))}
+.story-right .label{color:var(--vanguard);margin-bottom:calc(10 * var(--u))}
+.story-right .copy{line-height:1.45}
+.story-right .sq{display:flex;flex-direction:column;gap:calc(8 * var(--u));font-size:var(--t-card-body);line-height:1.42}
+.story-right .sq li::before{background:var(--vanguard)}
+
+/* Thank you */
+.thanks .main{flex:1;display:flex;flex-direction:column;justify-content:center;gap:calc(44 * var(--u))}
+.thanks .repo{font-family:var(--f-head);font-size:var(--t-subhead);line-height:1.2}
+.thanks .row{display:flex;flex-wrap:wrap;gap:calc(16 * var(--u));align-items:center}
+.ttag{font-family:var(--f-strong);font-weight:700;font-size:var(--t-label);letter-spacing:.1em;text-transform:uppercase;line-height:1.2;padding:calc(12 * var(--u)) calc(18 * var(--u));box-shadow:inset 0 0 0 max(1px,calc(2 * var(--u))) var(--haze)}
+.ttag.file{letter-spacing:.02em;text-transform:none}
+.cta{display:inline-block;font-family:var(--f-strong);font-weight:700;font-size:var(--t-card-body);line-height:1.2;letter-spacing:.06em;text-transform:uppercase;padding:calc(20 * var(--u)) calc(30 * var(--u));background:var(--ember);color:var(--charcoal)}
+
+/* Progress bar and dot navigation (master prompt output instructions) */
+.progress{position:fixed;top:0;left:0;right:0;height:max(3px,calc(6 * var(--u)));z-index:30;pointer-events:none}
+.progress span{display:block;height:100%;width:0;background:var(--vanguard);transition:width .15s linear}
+body[data-theme="dark"] .progress span{background:var(--haze)}
+body[data-theme="split"] .progress span{background:var(--charcoal)}
+.dots{position:fixed;right:max(6px,calc(22 * var(--u)));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:max(2px,calc(4 * var(--u)));z-index:30}
+.dots button{width:28px;height:28px;padding:0;border:0;border-radius:0;background:transparent;cursor:pointer;display:grid;place-items:center;color:var(--charcoal)}
+.dots button::before{content:"";width:12px;height:12px;box-shadow:inset 0 0 0 2px currentColor}
+.dots button.on::before{background:currentColor}
+.dots button:focus-visible{outline:2px solid currentColor;outline-offset:0}
+body[data-theme="dark"] .dots button{color:var(--haze)}
+/* Hover label: one word per slide, shown only on mouse hover */
+.dots button{position:relative}
+.dots button::after{content:attr(data-tip);position:absolute;right:calc(100% + 8px);top:50%;transform:translateY(-50%);padding:0;background:none;color:currentColor;font-family:var(--f-strong);font-weight:700;font-size:12px;line-height:1;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .12s ease}
+.dots button:hover::after{opacity:1;visibility:visible}
+
+/* Full module text: a reading view in a modal dialog */
+dialog.src{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;border-radius:0;background:var(--haze-50);color:var(--charcoal);overflow:auto;overscroll-behavior:contain}
+dialog.src::backdrop{background:var(--charcoal)}
+.src-head{position:sticky;top:0;z-index:2;background:var(--haze);display:flex;justify-content:space-between;align-items:center;gap:24px;padding:18px max(24px,calc((100% - 1120px) / 2))}
+.src-head h2{font-family:var(--f-head);font-size:max(24px,calc(44 * var(--u)));line-height:1.1;color:var(--vanguard);margin-top:6px}
+.src-head .label{font-size:max(13px,calc(20 * var(--u)))}
+.src-close{font-family:var(--f-strong);font-weight:700;font-size:max(13px,calc(20 * var(--u)));letter-spacing:.1em;text-transform:uppercase;padding:12px 18px;border:0;border-radius:0;background:var(--charcoal);color:var(--haze);cursor:pointer;flex:none}
+.src-close:hover{background:var(--vanguard)}
+.src-body{max-width:1120px;margin:0 auto;padding:28px 24px 96px;font-size:max(17px,calc(25 * var(--u)));line-height:1.6}
+.src-body h3{font-family:var(--f-sub);font-size:1.6em;line-height:1.2;color:var(--vanguard);font-weight:400;margin:2em 0 .6em}
+.src-body h3:first-child{margin-top:.4em}
+.src-body h4{font-family:var(--f-strong);font-weight:700;font-size:.85em;letter-spacing:.1em;text-transform:uppercase;margin:1.6em 0 .5em}
+.src-body h5{font-family:var(--f-strong);font-weight:700;font-size:1em;margin:1.3em 0 .4em}
+.src-body p{margin:.5em 0}
+.src-body ul,.src-body ol{margin:.5em 0}
+.src-body ul>li{position:relative;padding-left:1.3em;margin:.45em 0}
+.src-body ul>li::before{content:"";position:absolute;left:0;top:.66em;width:.4em;height:.4em;background:var(--vanguard)}
+.src-body ol{counter-reset:o}
+.src-body ol>li{counter-increment:o;position:relative;padding-left:1.8em;margin:.45em 0}
+.src-body ol>li::before{content:counter(o) ".";position:absolute;left:0;font-family:var(--f-strong);font-weight:700;color:var(--vanguard)}
+.src-body table{width:100%;border-collapse:collapse;margin:.8em 0 1em;font-size:.88em;line-height:1.45}
+.src-body th{font-family:var(--f-strong);font-weight:700;text-align:left;vertical-align:bottom;padding:.5em .7em;border-bottom:2px solid var(--charcoal)}
+.src-body td{vertical-align:top;padding:.5em .7em;border-bottom:1px solid var(--charcoal-25)}
+.src-body td.n,.src-body th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.src-body blockquote{border-left:4px solid var(--vanguard);padding:.2em 0 .2em 1em;margin:.6em 0}
+.ann{display:flex;gap:16px;align-items:flex-start;background:var(--haze);padding:16px 20px;margin:8px 0 8px;font-size:.92em;line-height:1.5}
+.ann .badge{font-size:.78em;padding:5px 10px;flex:none;margin-top:2px}
+.placeholder{display:inline-block;padding:2px 10px;box-shadow:inset 0 0 0 2px var(--charcoal-25);color:var(--charcoal-70)}
+
+@media (prefers-reduced-motion: reduce){.progress span{transition:none}}
+
+/* Narrow or portrait screens: slides become readable vertical pages */
+@media (max-width: 760px), (orientation: portrait) and (max-width: 1100px){
+  :root{--u:calc(100vw / 660);--mx:16px}
+  html{scroll-snap-type:y proximity}
+  .slide{height:auto;align-items:stretch}
+  .stage{width:100%;height:auto;min-height:100vh;padding:calc(64 * var(--u)) 16px calc(170 * var(--u))}
+  .display{font-size:calc(96 * var(--u))}
+  .cover .meta,.strategy,.research .top,.stages,.moscow,.prd,.hyp,.vtiles,.rules,.gtm,.channels,.kpis,.story{grid-template-columns:1fr}
+  .research,.blueprint,.validation,.launch{grid-template-rows:auto}
+  .strategy,.research .top,.story{row-gap:calc(36 * var(--u))}
+  .titlerow{flex-wrap:wrap;align-items:flex-start}
+  .abline div{grid-template-columns:1fr;row-gap:6px}
+  .hyp{row-gap:12px}
+  .t-split{background:var(--haze)}
+  .t-split .topbar .eyebrow{color:var(--vanguard)}
+  .t-split .title{color:var(--vanguard)}
+  .t-split .foot{color:var(--charcoal-70)}
+  .story-left{background:var(--vanguard);margin:0 -16px;padding:calc(40 * var(--u)) 16px}
+  .story-right{margin-top:0}
+  .statement{margin:calc(16 * var(--u)) 0 0}
+  .foot{left:16px;right:16px;height:auto;flex-wrap:wrap;bottom:calc(36 * var(--u))}
+  .keys{display:none}
+  .dots{display:none}
+}
+
+@media print{
+  @page{size:1920px 1080px;margin:0}
+  :root{--u:1px}
+  html{scroll-snap-type:none}
+  .slide{height:1080px;break-after:page}
+  .progress,.dots,.src-btn{display:none}
+}
+</style>
+</head>
+<body data-theme="dark">
+<div class="progress" aria-hidden="true"><span></span></div>
+<nav class="dots" aria-label="Slides"></nav>
+
+<main id="deck">
+
+<!-- Cover -->
+<section class="slide t-vanguard cover" id="cover" data-theme="dark" aria-label="Cover">
+  <div class="stage">
+    <div class="topbar">
+      <p class="label eyebrow">Final project · Product Management certification</p>
+      <p class="label brandlabel">Riverty BU Collection</p>
+    </div>
+    <div class="main">
+      <h1 class="display">Back in Flow:<br>Plans People Can Keep</h1>
+      <p class="pitch">For consumers with open claims and irregular income, Back in Flow shows which plans fit a low month and what happens if a payment is missed, before they commit, so they choose a plan they can keep.</p>
+    </div>
+    <dl class="meta">
+      <div><dt class="label">Name / cohort</dt><dd>Holger, Riverty cohort 2, BU Collection</dd></div>
+      <div><dt class="label">Repository</dt><dd><a href="https://github.com/Holger-product/pm-final-project">github.com/Holger-product/pm-final-project</a></dd></div>
+      <div><dt class="label">Prototype</dt><dd class="file">04-roadmap/prototype.html</dd></div>
+    </dl>
+    <footer class="foot">
+      <span>Sample data, illustrative, not Riverty research.</span>
+      <span class="keys">↓ ↑ or Space to move · Home · End · Esc back to start</span>
+    </footer>
+  </div>
+</section>
+
+<!-- Slide 5, Strategy -->
+<section class="slide t-haze" id="strategy" data-theme="light" aria-label="Slide 5, Strategy">
+  <div class="stage">
+    <div class="topbar">
+      <p class="label eyebrow">Slide 5 · Modules 1 and 3</p>
+      <p class="label brandlabel">Riverty BU Collection</p>
+    </div>
+    <h2 class="title">Strategy</h2>
+    <div class="body strategy">
+      <div class="left">
+        <article class="block">
+          <h3 class="label eyebrow">Problem hook</h3>
+          <p class="lead">We must solve a north star that rewards broken plans, with SSR rising while one in five new plans misses a payment within 60 days, by addressing consumers who are pushed to agree quickly instead of agreeing to a plan they understand and can actually keep.</p>
+        </article>
+        <article class="block">
+          <h3 class="label eyebrow">Value proposition</h3>
+          <p class="copy">For consumers with one or more open claims and irregular income, we will show exactly what they owe and what happens if something goes wrong, before they commit, so they choose a plan they can keep. It’s urgent because every month at today’s baseline adds about 730 broken plans that the current north star doesn’t show.</p>
+        </article>
+      </div>
+      <div class="right">
+        <aside class="callout">
+          <h3 class="label">Data-backed hypothesis · Module 3</h3>
+          <p>Based on consumers like N-02 who pick the plan that "looked like the right answer" and miss the second payment, and missed payments rising from 15.6% to 18.4% after the plan screen put the 6-month plan first (19.0% by Month 6), I believe that <strong>showing affordability fit and missed-payment consequences before confirmation</strong> for <strong>quick closers with variable income</strong> will result in <strong>more plans being kept</strong>, as measured by a drop in <strong>missed payments within 60 days from 19.0% to 15.5% or lower</strong>. I will protect the <strong>agreement rate at 44% or higher</strong> and will make a go/no-go decision after <strong>6 weeks of enrollment and 60 days of observation</strong>.</p>
+        </aside>
+        <p class="note"><span class="badge">Module 5 update</span><span>Target 16.0% or lower, agreement rate guardrail 45% or higher (Slide 8).</span></p>
+      </div>
+    </div>
+    <footer class="foot">
+      <span>Sample data, illustrative, not Riverty research.</span>
+      <button class="src-btn" type="button" data-open="d-strategy">Full module text</button>
+    </footer>
+  </div>
+</section>
+
+<!-- Slide 6, Research -->
+<section class="slide t-haze" id="research" data-theme="light" aria-label="Slide 6, Research">
+  <div class="stage">
+    <div class="topbar">
+      <p class="label eyebrow">Slide 6 · Module 2</p>
+      <p class="label brandlabel">Riverty BU Collection</p>
+    </div>
+    <h2 class="title">Research</h2>
+    <div class="body research">
+      <div class="top">
+        <article class="block">
+          <h3 class="label eyebrow">Competitive analysis / workaround · the process today</h3>
+          <ol class="steps">
+            <li>Opens the reminder link on her break and sees only one claim at a time.</li>
+            <li>Guesses an income figure, or switches to the chat for a quick yes.</li>
+            <li>Picks the shortest plan because it looks like the right answer.</li>
+            <li>Misses the second payment, sometimes after a reminder that arrived too late.</li>
+            <li>Calls an agent, who asks again for the details she already entered online.</li>
+          </ol>
+        </article>
+        <aside class="card quote">
+          <h3 class="label">The evidence</h3>
+          <blockquote>“I picked the plan with the lowest number of months because it looked like the right answer. The amount was too high and I missed the second payment.”</blockquote>
+          <p class="label cite">N-02</p>
+        </aside>
+      </div>
+      <div class="journey">
+        <div class="head">
+          <h3 class="label eyebrow">Journey map · future state</h3>
+        </div>
+        <ol class="stages">
+          <li>
+            <div class="num"><span class="label">01</span></div>
+            <h4>See the whole picture</h4>
+            <p>All claims and amounts in one view.</p>
+          </li>
+          <li>
+            <div class="num"><span class="label">02</span></div>
+            <h4>Understand before answering</h4>
+            <p>Plain “why we ask” notes and a low-month income option.</p>
+          </li>
+          <li class="misery">
+            <div class="num"><span class="label">03</span><span class="badge">Moment of misery today</span></div>
+            <h4>Choose a plan I can keep</h4>
+            <p>Fit labels and missed-payment consequences before confirming.</p>
+          </li>
+          <li>
+            <div class="num"><span class="label">04</span></div>
+            <h4>Stay on track or get help</h4>
+            <p>Reminders before due dates, and an agent who sees what she entered.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <footer class="foot">
+      <span>Sample data, illustrative, not Riverty research.</span>
+      <button class="src-btn" type="button" data-open="d-research">Full module text</button>
+    </footer>
+  </div>
+</section>
+
+<!-- Slide 7, Blueprint -->
+<section class="slide t-haze" id="blueprint" data-theme="light" aria-label="Slide 7, Blueprint">
+  <div class="stage">
+    <div class="topbar">
+      <p class="label eyebrow">Slide 7 · Module 4</p>
+      <p class="label brandlabel">Riverty BU Collection</p>
+    </div>
+    <div class="titlerow">
+      <h2 class="title">Blueprint</h2>
+      <p class="proto-tag"><span class="badge b-charcoal">Prototype</span><span class="file">04-roadmap/prototype.html</span></p>
+    </div>
+    <div class="body blueprint">
+      <div class="moscow" aria-label="MoSCoW scope">
+        <article class="col must">
+          <h3 class="label"><span>Must</span><span>7</span></h3>
+          <ul class="sq">
+            <li>Affordability input with three fields and a “why we ask” note</li>
+            <li>Option to mark income as about the same every month</li>
+            <li>Plan labels Fits, Tight, Risky against remaining budget</li>
+            <li>Best-fitting plan first, no plan preselected</li>
+            <li>Missed-payment consequences shown before confirmation</li>
+            <li>One-line reason for every label</li>
+            <li>Confirmation summary with amount, payments, first due date and missed-payment rules</li>
+          </ul>
+        </article>
+        <article class="col">
+          <h3 class="label"><span>Should</span><span>3</span></h3>
+          <ul class="sq">
+            <li>Answers kept when going back (T-204)</li>
+            <li>Plain hint on how to reach an agent if no plan fits</li>
+            <li>Second confirmation when a Risky plan is chosen</li>
+          </ul>
+        </article>
+        <article class="col">
+          <h3 class="label"><span>Could</span><span>3</span></h3>
+          <ul class="sq">
+            <li>Visual budget bar per plan</li>
+            <li>View of all open claims (read-only)</li>
+            <li>Simple language toggle</li>
+          </ul>
+        </article>
+        <article class="col">
+          <h3 class="label"><span>Won’t (now)</span><span>6</span></h3>
+          <ul class="sq">
+            <li>One plan for several claims (B1)</li>
+            <li>Pay day date picker (B6)</li>
+            <li>Document upload or skip (B5)</li>
+            <li>Chat assistant (B8)</li>
+            <li>Agent handoff summary (B4)</li>
+            <li>Real payment processing or credit checks</li>
+          </ul>
+        </article>
+      </div>
+      <div class="prd">
+        <article class="card">
+          <h3 class="label eyebrow">PRD · Vision</h3>
+          <p>Every consumer leaves the portal with a plan that fits their real income and knows what happens if something goes wrong.</p>
+        </article>
+        <article class="card">
+          <h3 class="label eyebrow">Fit labels · remaining budget</h3>
+          <ul class="fitscale">
+            <li><strong>Fits</strong><span>up to 40%</span></li>
+            <li><strong>Tight</strong><span>40% to 70%</span></li>
+            <li><strong>Risky</strong><span>above 70%</span></li>
+          </ul>
+          <p class="chipnote">Prototype thresholds, not policy.</p>
+        </article>
+        <article class="card">
+          <h3 class="label eyebrow">What if I miss a payment?</h3>
+          <p>The confirm button stays disabled until the missed-payment panel has been opened for the currently selected plan.</p>
+        </article>
+      </div>
+    </div>
+    <footer class="foot">
+      <span>Sample data, illustrative, not Riverty research.</span>
+      <button class="src-btn" type="button" data-open="d-blueprint">Full module text</button>
+    </footer>
+  </div>
+</section>
+
+
+<!-- Live prototype -->
+<section class="slide t-haze" id="prototype" data-theme="light" aria-label="Live prototype">
+  <div class="stage">
+    <div class="topbar">
+      <p class="label eyebrow">Live prototype · Module 4</p>
+      <p class="label brandlabel">Riverty BU Collection</p>
+    </div>
+    <div class="titlerow">
+      <h2 class="title">Plan Fit Check</h2>
+    </div>
+    <div class="body demo">
+      <div class="phonewrap" id="phoneWrap">
+        <div class="phone" id="phone" role="group" aria-label="Smartphone showing the Plan Fit Check prototype">
+          <img class="frameimg" alt="" aria-hidden="true" src="data:image/webp;base64,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">
+          <div class="screen" id="phoneScreen">
+            <div class="vp" id="phoneVp">
+              <div class="status" aria-hidden="true">
+                <span>9:41</span>
+                                <span class="icons">
+                  <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+                  <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.3-1.4A10.4 10.4 0 0 0 8 .2 10.4 10.4 0 0 0 .7 3.2L2 4.6a8.4 8.4 0 0 1 6-2.4Zm0 3.9c1.3 0 2.5.5 3.4 1.3l1.4-1.4A6.8 6.8 0 0 0 8 4.1a6.8 6.8 0 0 0-4.8 1.9l1.4 1.4c.9-.8 2.1-1.3 3.4-1.3Zm0 3.8c-.5 0-1 .2-1.4.6L8 12l1.4-1.5c-.4-.4-.9-.6-1.4-.6Z"/></svg>
+                  <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="#000" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2"/><path d="M25 4.5v4c.8-.3 1.3-1.1 1.3-2s-.5-1.7-1.3-2Z" opacity=".5"/></svg>
+                </span>
+              </div>
+              <iframe id="protoFrame" title="Plan Fit Check prototype" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;title&gt;Plan Fit Check · prototype&lt;/title&gt;
+&lt;!--
+  Visual values follow &quot;Riverty Classic Design Guidelines&quot; (Confluence, Guidelines V2, last audited 2026-09-22),
+  Layer 3 fallback values. Token names are noted next to each value. The guidelines define a light theme only,
+  so no dark theme is included. Logo and GT Ultra Median are not available here: no logo, fallback serif.
+--&gt;
+&lt;style&gt;
+:root{
+  /* 1. Color */
+  --r-text-strong:#000000; --r-text-regular:#282828; --r-text-soft:#686868; --r-text-inverse:#FFFFFF;
+  --r-background-softest:#FFFFFF; --r-background-softer:#F3F1F0; --r-background-soft:#E7E4E2;
+  --r-background-brand:#527A42; --r-background-brand-softest:#E5EBE3;
+  --r-background-interactive-regular:#282828; --r-background-state-hovered:rgba(40,40,40,.04);
+  --r-background-overlay:rgba(0,0,0,.48);
+  --r-border-softest:#E7E4E2; --r-border-softer:#C9C9C9; --r-border-interactive:#282828;
+  --r-border-brand:#527A42; --r-border-focused:#0071E3;
+  --r-icon-inverse:#FFFFFF;
+  --r-link-enabled:#014BB3;
+  --r-status-error-regular:#B00C15; --r-status-error-soft:#FEF6F6;
+  --r-status-warning-regular:#FF7429; --r-status-warning-soft:#FEF9F5;
+  --r-status-success-regular:#298535; --r-status-success-soft:#F7FDF8;
+  --r-status-info-regular:#3E5C73; --r-status-info-soft:#F8FAFB;
+  /* 3. Shape */
+  --r-radius-none:0; --r-radius-full:999px;
+  /* 2. Typography */
+  --serif:&quot;GT Ultra Median&quot;, Georgia, &quot;Times New Roman&quot;, serif;
+  --sans:&quot;SF Pro Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--r-background-softer);color:var(--r-text-regular);font:16px/24px var(--sans);-webkit-font-smoothing:antialiased}
+p{margin:0}
+/* Heading L 32/40 Light -0.75, Heading S 24/30 Light -0.25 */
+h1,h2{font-family:var(--serif);font-weight:300;color:var(--r-text-strong);margin:0}
+h1{font-size:32px;line-height:40px;letter-spacing:-.75px}
+h2{font-size:24px;line-height:30px;letter-spacing:-.25px}
+
+.sample{background:var(--r-status-info-soft);color:var(--r-status-info-regular);font-size:12px;line-height:18px;padding:8px 16px;border-bottom:1px solid var(--r-border-softest)}
+.topbar{background:var(--r-background-softest);border-bottom:1px solid var(--r-border-softest)}
+.topbar div{max-width:560px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+.product{font-family:var(--serif);font-weight:300;font-size:24px;line-height:30px;letter-spacing:-.25px;color:var(--r-text-strong)}
+.steps{font-size:12px;line-height:18px;color:var(--r-text-soft)}
+main{max-width:560px;margin:0 auto;padding:32px 24px 56px}
+/* Progress: r-background-brand for done steps, r-background-soft for upcoming */
+.progress{max-width:560px;margin:0 auto;padding:0 24px 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.progress i{height:4px;background:var(--r-background-soft)}
+.progress i.done{background:var(--r-background-brand)}
+/* Hero accent: r-background-brand with r-text-inverse (guidelines: &quot;hero accents&quot;) */
+.hero{background:var(--r-background-brand);color:var(--r-text-inverse)}
+.hero div{max-width:560px;margin:0 auto;padding:40px 24px}
+.hero h1{color:var(--r-text-inverse);font-size:40px;line-height:50px;letter-spacing:-1px}
+.hero p{color:var(--r-text-inverse);margin-top:8px}
+@media (max-width:420px){.hero h1{font-size:32px;line-height:40px;letter-spacing:-.75px}}
+.lede{color:var(--r-text-soft);margin:8px 0 32px}
+
+/* Card: price / key value Heading M serif */
+.claim{background:var(--r-background-softest);padding:16px 20px;margin-bottom:32px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.claim span{color:var(--r-text-soft);font-size:14px;line-height:21px}
+.claim strong{font-family:var(--serif);font-weight:300;font-size:28px;line-height:35px;letter-spacing:-.5px;color:var(--r-text-strong)}
+
+/* 5.2 Input */
+.field{margin-bottom:24px}
+.field label{display:block;font-size:14px;line-height:21px;color:var(--r-text-regular);margin-bottom:8px}
+.field input[type=text]{width:100%;font:16px/24px var(--sans);color:var(--r-text-regular);background:var(--r-background-softest);border:1px solid var(--r-border-softer);border-radius:var(--r-radius-none);padding:12px 14px}
+.field input[type=text]::placeholder{color:var(--r-text-soft)}
+.field input[type=text]:focus{outline:none;border-color:var(--r-border-focused)}
+.field input[aria-invalid=true]{border-color:var(--r-status-error-regular)}
+.field input:disabled{background:var(--r-background-soft);color:var(--r-text-soft)}
+.why{font-size:12px;line-height:18px;color:var(--r-text-soft);margin-top:8px}
+.err{font-size:12px;line-height:18px;color:var(--r-status-error-regular);margin-top:4px}
+.err:empty{display:none}
+.same{display:flex;gap:8px;align-items:center;font-size:14px;line-height:21px;margin:-8px 0 24px}
+.same input{width:18px;height:18px;accent-color:var(--r-background-brand)}
+
+/* Status notices: soft variant background, regular variant accent */
+.notice{padding:12px 16px;font-size:14px;line-height:21px;margin-bottom:24px;border-left:4px solid}
+.notice.warn{background:var(--r-status-warning-soft);border-color:var(--r-status-warning-regular)}
+
+/* 5.1 Button: uppercase, 48px, square, no shadow */
+button{font:16px/20px var(--sans);text-transform:uppercase;border-radius:var(--r-radius-none);cursor:pointer;min-height:48px;padding:14px 24px}
+.primary{width:100%;background:var(--r-background-interactive-regular);color:var(--r-text-inverse);border:0}
+.primary:disabled{background:var(--r-background-soft);color:var(--r-text-soft);cursor:not-allowed}
+.secondary{width:100%;background:var(--r-background-softest);color:var(--r-text-regular);border:1px solid var(--r-border-interactive)}
+.link{background:none;border:0;padding:0;min-height:0;text-transform:none;font-size:16px;line-height:24px;color:var(--r-link-enabled);text-decoration:underline;cursor:pointer}
+:focus-visible{outline:2px solid var(--r-border-focused);outline-offset:2px}
+.back{margin-bottom:24px;font-size:14px}
+
+.budget{font-size:14px;line-height:21px;color:var(--r-text-soft);margin:0 0 24px}
+.budget b{color:var(--r-text-strong);font-weight:600}
+
+/* 5.5 List item / selection row */
+fieldset{border:0;padding:0;margin:0}
+legend{font-size:14px;line-height:21px;color:var(--r-text-soft);margin-bottom:8px;padding:0}
+.plans{list-style:none;margin:0 0 24px;padding:0;display:grid;gap:8px}
+.plan{position:relative;display:block;background:var(--r-background-softest);border:1px solid var(--r-border-softer);padding:16px;cursor:pointer}
+.plan::after{content:&quot;&quot;;position:absolute;inset:0;pointer-events:none}
+.plan:hover::after{background:var(--r-background-state-hovered)}
+.plan:has(input:checked){background:var(--r-background-brand-softest);border:2px solid var(--r-border-brand);padding:15px}
+.plan input{position:absolute;opacity:0;pointer-events:none}
+.plan:has(input:focus-visible){outline:2px solid var(--r-border-focused);outline-offset:2px}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.amt{font-family:var(--serif);font-weight:300;font-size:24px;line-height:30px;letter-spacing:-.25px;color:var(--r-text-strong)}
+.per{font-family:var(--sans);font-size:14px;line-height:21px;color:var(--r-text-soft);letter-spacing:0}
+.term{font-size:14px;line-height:21px;color:var(--r-text-soft)}
+/* Badge: r-radius-full pill, status tokens */
+.tag{font-size:12px;line-height:18px;font-weight:600;padding:2px 12px;border-radius:var(--r-radius-full);white-space:nowrap;border:1px solid;color:var(--r-text-regular)}
+.tag.Fits{background:var(--r-status-success-soft);border-color:var(--r-status-success-regular);color:var(--r-status-success-regular)}
+.tag.Tight{background:var(--r-status-warning-soft);border-color:var(--r-status-warning-regular)}
+.tag.Risky{background:var(--r-status-error-soft);border-color:var(--r-status-error-regular);color:var(--r-status-error-regular)}
+.meter{height:4px;background:var(--r-background-soft);margin:12px 0 8px;position:relative}
+.meter i{position:absolute;inset:0 auto 0 0}
+.Fits .meter i{background:var(--r-status-success-regular)}
+.Tight .meter i{background:var(--r-status-warning-regular)}
+.Risky .meter i{background:var(--r-status-error-regular)}
+.reason{font-size:14px;line-height:21px}
+
+/* 5.8 Accordion */
+details{background:var(--r-background-softest);border:1px solid var(--r-border-softer);margin-bottom:24px}
+summary{cursor:pointer;padding:16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:&quot;+&quot;;font-weight:400;font-size:20px}
+details[open] summary::after{content:&quot;\2212&quot;}
+.consequences{padding:0 16px 16px;font-size:14px;line-height:21px}
+.consequences ul{margin:8px 0 0;padding-left:20px}
+.consequences li{margin-bottom:4px}
+.placeholder{display:inline-block;font-size:12px;line-height:18px;background:var(--r-status-warning-soft);border:1px solid var(--r-status-warning-regular);padding:2px 8px;margin-bottom:8px}
+.gate{font-size:12px;line-height:18px;color:var(--r-text-soft);text-align:center;margin-top:8px}
+.gate:empty{display:none}
+.agent{background:var(--r-background-softest);border:1px solid var(--r-border-softer);padding:16px;margin-bottom:24px;font-size:14px;line-height:21px}
+.agent.hl{background:var(--r-status-info-soft);border-color:var(--r-status-info-regular)}
+.agent .link{font-size:14px;line-height:21px}
+
+.summary{background:var(--r-background-softest);margin:32px 0}
+.summary div{display:flex;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--r-border-softest);font-size:14px;line-height:21px}
+.summary div:last-child{border-bottom:0}
+.summary b{font-weight:600;color:var(--r-text-strong)}
+.summary .big b{font-family:var(--serif);font-weight:300;font-size:28px;line-height:35px;letter-spacing:-.5px}
+.check{width:48px;height:48px;border-radius:var(--r-radius-full);background:var(--r-background-brand);color:var(--r-icon-inverse);display:grid;place-items:center;font-size:24px;margin-bottom:24px}
+
+/* 5.6 Dialog */
+dialog{border:0;border-radius:var(--r-radius-none);padding:24px;max-width:420px;background:var(--r-background-softest);color:var(--r-text-regular)}
+dialog::backdrop{background:var(--r-background-overlay)}
+dialog .actions{display:grid;gap:8px;margin-top:24px}
+[hidden]{display:none!important}
+#heroTitle:focus{outline:none}
+@media (prefers-reduced-motion:no-preference){ .screen{animation:in .2s ease-out} @keyframes in{from{opacity:0}} }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;sample&quot;&gt;Prototype with sample data. Not a live Riverty service, nothing you enter is stored or sent.&lt;/div&gt;
+&lt;header class=&quot;topbar&quot;&gt;&lt;div&gt;&lt;span class=&quot;product&quot;&gt;Back in Flow&lt;/span&gt;&lt;span class=&quot;steps&quot; id=&quot;stepLabel&quot;&gt;Step 1 of 3&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;progress&quot; aria-hidden=&quot;true&quot;&gt;&lt;i class=&quot;done&quot;&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&lt;/header&gt;
+&lt;section class=&quot;hero&quot;&gt;&lt;div&gt;&lt;h1 id=&quot;heroTitle&quot; tabindex=&quot;-1&quot;&gt;Your Monthly Budget&lt;/h1&gt;&lt;p id=&quot;heroLede&quot;&gt;Three quick questions, so we only suggest plans you can keep.&lt;/p&gt;&lt;/div&gt;&lt;/section&gt;
+&lt;main&gt;
+
+&lt;!-- Screen 1: entry --&gt;
+&lt;section id=&quot;s1&quot; class=&quot;screen&quot;&gt;
+  &lt;div class=&quot;claim&quot;&gt;&lt;span&gt;Open amount&lt;/span&gt;&lt;strong id=&quot;claimAmt&quot;&gt;&lt;/strong&gt;&lt;/div&gt;
+  &lt;form id=&quot;budgetForm&quot; novalidate&gt;
+    &lt;div class=&quot;field&quot;&gt;
+      &lt;label for=&quot;normal&quot;&gt;Income in a normal month (€)&lt;/label&gt;
+      &lt;input type=&quot;text&quot; inputmode=&quot;decimal&quot; id=&quot;normal&quot; autocomplete=&quot;off&quot; aria-describedby=&quot;normalWhy normalErr&quot;&gt;
+      &lt;p class=&quot;why&quot; id=&quot;normalWhy&quot;&gt;We use this to see what a typical month looks like. It&#x27;s only used to suggest a plan.&lt;/p&gt;
+      &lt;p class=&quot;err&quot; id=&quot;normalErr&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;label class=&quot;same&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;same&quot;&gt; My income is about the same every month&lt;/label&gt;
+    &lt;div class=&quot;field&quot;&gt;
+      &lt;label for=&quot;low&quot;&gt;Income in a low month (€)&lt;/label&gt;
+      &lt;input type=&quot;text&quot; inputmode=&quot;decimal&quot; id=&quot;low&quot; autocomplete=&quot;off&quot; aria-describedby=&quot;lowWhy lowErr&quot;&gt;
+      &lt;p class=&quot;why&quot; id=&quot;lowWhy&quot;&gt;If your pay changes with shifts, plans are based on your lower months, so they still work when money is tight.&lt;/p&gt;
+      &lt;p class=&quot;err&quot; id=&quot;lowErr&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;field&quot;&gt;
+      &lt;label for=&quot;fixed&quot;&gt;Fixed costs per month (€)&lt;/label&gt;
+      &lt;input type=&quot;text&quot; inputmode=&quot;decimal&quot; id=&quot;fixed&quot; autocomplete=&quot;off&quot; aria-describedby=&quot;fixedWhy fixedErr&quot;&gt;
+      &lt;p class=&quot;why&quot; id=&quot;fixedWhy&quot;&gt;Rent, energy, insurance, other payments. A rough number is fine.&lt;/p&gt;
+      &lt;p class=&quot;err&quot; id=&quot;fixedErr&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;notice warn&quot; id=&quot;lowHigher&quot; hidden&gt;Your low month is higher than your normal month. Please check the two numbers. You can still continue.&lt;/div&gt;
+    &lt;button type=&quot;submit&quot; class=&quot;primary&quot;&gt;Show my plans&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;
+
+&lt;!-- Screen 2: core --&gt;
+&lt;section id=&quot;s2&quot; class=&quot;screen&quot; hidden&gt;
+  &lt;button class=&quot;link back&quot; id=&quot;toBudget&quot;&gt;Change my budget&lt;/button&gt;
+  &lt;p class=&quot;budget&quot; id=&quot;budgetLine&quot;&gt;&lt;/p&gt;
+  &lt;div class=&quot;agent&quot; id=&quot;agentBox&quot; hidden&gt;&lt;/div&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Choose a plan&lt;/legend&gt;
+    &lt;ul class=&quot;plans&quot; id=&quot;plans&quot;&gt;&lt;/ul&gt;
+  &lt;/fieldset&gt;
+  &lt;details id=&quot;missPanel&quot; hidden&gt;
+    &lt;summary&gt;What if I miss a payment?&lt;/summary&gt;
+    &lt;div class=&quot;consequences&quot; id=&quot;missText&quot;&gt;&lt;/div&gt;
+  &lt;/details&gt;
+  &lt;button class=&quot;primary&quot; id=&quot;confirmBtn&quot; disabled&gt;Confirm this plan&lt;/button&gt;
+  &lt;p class=&quot;gate&quot; id=&quot;gateHint&quot;&gt;Choose a plan to continue.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;!-- Screen 3: confirmation --&gt;
+&lt;section id=&quot;s3&quot; class=&quot;screen&quot; hidden&gt;
+  &lt;div class=&quot;check&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/div&gt;
+  &lt;div class=&quot;summary&quot; id=&quot;summary&quot;&gt;&lt;/div&gt;
+  &lt;h2&gt;If You Miss a Payment&lt;/h2&gt;
+  &lt;div class=&quot;consequences&quot; style=&quot;padding:12px 0 24px&quot; id=&quot;missSummary&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;agent&quot;&gt;Something changed? &lt;button class=&quot;link&quot; type=&quot;button&quot;&gt;Talk to an agent&lt;/button&gt; and we&#x27;ll look at your plan together.&lt;/div&gt;
+  &lt;button class=&quot;secondary&quot; id=&quot;restart&quot;&gt;Start again&lt;/button&gt;
+&lt;/section&gt;
+
+&lt;dialog id=&quot;riskDialog&quot; aria-labelledby=&quot;riskTitle&quot;&gt;
+  &lt;h2 id=&quot;riskTitle&quot;&gt;This Plan May Be Hard to Keep&lt;/h2&gt;
+  &lt;p id=&quot;riskText&quot; style=&quot;margin-top:12px;font-size:14px&quot;&gt;&lt;/p&gt;
+  &lt;div class=&quot;actions&quot;&gt;
+    &lt;button class=&quot;primary&quot; id=&quot;riskSafer&quot;&gt;Show me a safer plan&lt;/button&gt;
+    &lt;button class=&quot;secondary&quot; id=&quot;riskYes&quot;&gt;Confirm anyway&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;
+&lt;/main&gt;
+
+&lt;script&gt;
+// Sample data and prototype thresholds (not policy)
+const CLAIM = 1200;
+const TERMS = [3, 6, 12, 18];
+const FITS = 0.40, TIGHT = 0.70, MAX = 20000;
+const MISS_TEXT = `&lt;span class=&quot;placeholder&quot;&gt;Sample text, to be confirmed by Legal&lt;/span&gt;
+&lt;ul&gt;
+&lt;li&gt;We send you a reminder a few days before each payment.&lt;/li&gt;
+&lt;li&gt;If a payment doesn&#x27;t arrive, we contact you first and give you time to pay or change the plan.&lt;/li&gt;
+&lt;li&gt;Your plan stays active after one late payment if you get in touch.&lt;/li&gt;
+&lt;li&gt;You can always talk to an agent to adjust the amount or the date.&lt;/li&gt;
+&lt;/ul&gt;`;
+
+const $ = id =&gt; document.getElementById(id);
+const HERO = {
+  s1:[&quot;Your Monthly Budget&quot;,&quot;Three quick questions, so we only suggest plans you can keep.&quot;],
+  s2:[&quot;Plans That Fit You&quot;,&quot;Each plan shows how it fits your budget in a low month.&quot;],
+  s3:[&quot;Your Plan Is Set Up&quot;,&quot;Here&#x27;s everything in one place.&quot;]
+};
+const eur = n =&gt; n.toLocaleString(&quot;en-IE&quot;,{style:&quot;currency&quot;,currency:&quot;EUR&quot;,maximumFractionDigits:n%1?2:0});
+const state = { remaining:0, plans:[], selected:null, openedFor:null };
+
+$(&quot;claimAmt&quot;).textContent = eur(CLAIM);
+
+function parse(v){ const t=v.trim().replace(/\s/g,&quot;&quot;).replace(&quot;,&quot;,&quot;.&quot;); return t===&quot;&quot;?NaN:Number(t); }
+function check(id, label){
+  const el=$(id), err=$(id+&quot;Err&quot;), raw=el.value.trim(), n=parse(el.value);
+  let msg=&quot;&quot;;
+  if(raw===&quot;&quot;) msg=`Enter ${label}, a rough number is fine.`;
+  else if(isNaN(n)) msg=&quot;Use numbers only, for example 1850.&quot;;
+  else if(n&lt;0) msg=&quot;This can&#x27;t be below zero.&quot;;
+  else if(n&gt;MAX) msg=`That&#x27;s more than ${eur(MAX)} a month. Please check the number.`;
+  err.textContent=msg; el.setAttribute(&quot;aria-invalid&quot;, msg? &quot;true&quot;:&quot;false&quot;);
+  return msg? null : n;
+}
+
+$(&quot;same&quot;).addEventListener(&quot;change&quot;, e=&gt;{
+  $(&quot;low&quot;).disabled = e.target.checked;
+  if(e.target.checked) $(&quot;low&quot;).value=$(&quot;normal&quot;).value;
+});
+$(&quot;normal&quot;).addEventListener(&quot;input&quot;, ()=&gt;{ if($(&quot;same&quot;).checked) $(&quot;low&quot;).value=$(&quot;normal&quot;).value; });
+
+$(&quot;budgetForm&quot;).addEventListener(&quot;submit&quot;, e=&gt;{
+  e.preventDefault();
+  const normal=check(&quot;normal&quot;,&quot;your normal monthly income&quot;);
+  const low=check(&quot;low&quot;,&quot;your income in a low month&quot;);
+  const fixed=check(&quot;fixed&quot;,&quot;your fixed costs&quot;);
+  if(normal===null||low===null||fixed===null){
+    const firstBad=document.querySelector(&#x27;[aria-invalid=&quot;true&quot;]&#x27;); if(firstBad) firstBad.focus(); return;
+  }
+  $(&quot;lowHigher&quot;).hidden = !(low&gt;normal);
+  if(low&gt;normal &amp;&amp; !$(&quot;lowHigher&quot;).dataset.seen){ $(&quot;lowHigher&quot;).dataset.seen=&quot;1&quot;; return; }
+  state.remaining = low - fixed;
+  buildPlans(); show(&quot;s2&quot;);
+});
+
+function label(ratio){ return ratio&lt;=FITS?&quot;Fits&quot;:ratio&lt;=TIGHT?&quot;Tight&quot;:&quot;Risky&quot;; }
+
+function buildPlans(){
+  const r=state.remaining, order={Fits:0,Tight:1,Risky:2};
+  state.plans = TERMS.map(m=&gt;{
+    const amt=Math.round(CLAIM/m*100)/100;
+    const ratio = r&gt;0 ? amt/r : Infinity;
+    return {id:&quot;p&quot;+m, months:m, amt, ratio, label:label(ratio)};
+  });
+  const allRisky = state.plans.every(p=&gt;p.label===&quot;Risky&quot;);
+  state.plans.sort((a,b)=&gt; allRisky ? b.months-a.months : (order[a.label]-order[b.label]) || (a.months-b.months));
+  state.selected=null; state.openedFor=null;
+
+  $(&quot;budgetLine&quot;).innerHTML = r&gt;0
+    ? `Left after fixed costs in a low month: &lt;b&gt;${eur(r)}&lt;/b&gt;`
+    : `In a low month, your fixed costs use up all of your income.`;
+
+  const agent=$(&quot;agentBox&quot;);
+  if(r&lt;=0 || allRisky){
+    agent.hidden=false; agent.classList.add(&quot;hl&quot;);
+    agent.innerHTML = `None of these plans fits your budget right now. &lt;button class=&quot;link&quot; type=&quot;button&quot;&gt;Talk to an agent&lt;/button&gt; to find an amount that works. You can still choose a plan below.`;
+  } else { agent.hidden=true; agent.classList.remove(&quot;hl&quot;); }
+
+  $(&quot;plans&quot;).innerHTML = state.plans.map(p=&gt;{
+    const pct = isFinite(p.ratio) ? Math.round(p.ratio*100) : null;
+    const reason = pct===null
+      ? &quot;There&#x27;s no money left after fixed costs in a low month.&quot;
+      : `${eur(p.amt)} is ${pct}% of what&#x27;s left after fixed costs.`;
+    const w = pct===null?100:Math.min(pct,100);
+    return `&lt;li&gt;&lt;label class=&quot;plan ${p.label}&quot;&gt;
+      &lt;input type=&quot;radio&quot; name=&quot;plan&quot; value=&quot;${p.id}&quot;&gt;
+      &lt;div class=&quot;row&quot;&gt;&lt;span class=&quot;amt&quot;&gt;${eur(p.amt)}&lt;span class=&quot;per&quot;&gt; / month&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;tag ${p.label}&quot;&gt;${p.label}&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;term&quot;&gt;${p.months} payments, total ${eur(CLAIM)}&lt;/div&gt;
+      &lt;div class=&quot;meter&quot; aria-hidden=&quot;true&quot;&gt;&lt;i style=&quot;width:${w}%&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+      &lt;p class=&quot;reason&quot;&gt;${reason}&lt;/p&gt;
+    &lt;/label&gt;&lt;/li&gt;`;
+  }).join(&quot;&quot;);
+
+  document.querySelectorAll(&#x27;input[name=plan]&#x27;).forEach(i=&gt;i.addEventListener(&quot;change&quot;, ()=&gt;{
+    state.selected = state.plans.find(p=&gt;p.id===i.value);
+    const panel=$(&quot;missPanel&quot;); panel.hidden=false; panel.open=false;
+    $(&quot;missText&quot;).innerHTML = `&lt;p&gt;For your plan of ${eur(state.selected.amt)} per month:&lt;/p&gt;${MISS_TEXT}`;
+    updateGate();
+  }));
+  $(&quot;missPanel&quot;).hidden=true; updateGate();
+}
+
+$(&quot;missPanel&quot;).addEventListener(&quot;toggle&quot;, ()=&gt;{
+  if($(&quot;missPanel&quot;).open &amp;&amp; state.selected){ state.openedFor = state.selected.id; updateGate(); }
+});
+
+function updateGate(){
+  const ok = state.selected &amp;&amp; state.openedFor===state.selected.id;
+  $(&quot;confirmBtn&quot;).disabled = !ok;
+  $(&quot;gateHint&quot;).textContent = !state.selected ? &quot;Choose a plan to continue.&quot;
+    : ok ? &quot;&quot; : &quot;Open “What if I miss a payment?” to continue.&quot;;
+}
+
+$(&quot;confirmBtn&quot;).addEventListener(&quot;click&quot;, ()=&gt;{
+  const p=state.selected; if(!p) return;
+  if(p.label===&quot;Risky&quot;){
+    $(&quot;riskText&quot;).textContent = isFinite(p.ratio)
+      ? `${eur(p.amt)} a month is ${Math.round(p.ratio*100)}% of what&#x27;s left in a low month. Plans like this often break in the first two months.`
+      : `In a low month there&#x27;s nothing left after fixed costs, so any payment may be hard to keep.`;
+    $(&quot;riskDialog&quot;).showModal(); return;
+  }
+  finish();
+});
+$(&quot;riskSafer&quot;).addEventListener(&quot;click&quot;, ()=&gt;{ $(&quot;riskDialog&quot;).close(); $(&quot;plans&quot;).querySelector(&quot;input&quot;).focus(); });
+$(&quot;riskYes&quot;).addEventListener(&quot;click&quot;, ()=&gt;{ $(&quot;riskDialog&quot;).close(); finish(); });
+
+function finish(){
+  const p=state.selected, due=new Date(); due.setDate(due.getDate()+14);
+  $(&quot;summary&quot;).innerHTML = `
+    &lt;div class=&quot;big&quot;&gt;&lt;span&gt;Monthly amount&lt;/span&gt;&lt;b&gt;${eur(p.amt)}&lt;/b&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;span&gt;Number of payments&lt;/span&gt;&lt;b&gt;${p.months}&lt;/b&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;span&gt;First payment due&lt;/span&gt;&lt;b&gt;${due.toLocaleDateString(&quot;en-GB&quot;,{day:&quot;numeric&quot;,month:&quot;long&quot;,year:&quot;numeric&quot;})}&lt;/b&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;span&gt;Fit with your budget&lt;/span&gt;&lt;b&gt;${p.label}&lt;/b&gt;&lt;/div&gt;`;
+  $(&quot;missSummary&quot;).innerHTML = MISS_TEXT;
+  show(&quot;s3&quot;);
+}
+
+$(&quot;toBudget&quot;).addEventListener(&quot;click&quot;, ()=&gt;show(&quot;s1&quot;));
+$(&quot;restart&quot;).addEventListener(&quot;click&quot;, ()=&gt;{
+  $(&quot;budgetForm&quot;).reset(); $(&quot;low&quot;).disabled=false; $(&quot;lowHigher&quot;).hidden=true; delete $(&quot;lowHigher&quot;).dataset.seen;
+  [&quot;normal&quot;,&quot;low&quot;,&quot;fixed&quot;].forEach(id=&gt;{ $(id+&quot;Err&quot;).textContent=&quot;&quot;; $(id).setAttribute(&quot;aria-invalid&quot;,&quot;false&quot;); });
+  show(&quot;s1&quot;);
+});
+
+function show(id){
+  [&quot;s1&quot;,&quot;s2&quot;,&quot;s3&quot;].forEach(s=&gt;$(s).hidden = s!==id);
+  const n = Number(id.slice(1)), copy = HERO[id];
+  $(&quot;stepLabel&quot;).textContent = &quot;Step &quot; + n + &quot; of 3&quot;;
+  document.querySelectorAll(&quot;.progress i&quot;).forEach((el,i)=&gt;el.classList.toggle(&quot;done&quot;, i&lt;n));
+  $(&quot;heroTitle&quot;).textContent = copy[0]; $(&quot;heroLede&quot;).textContent = copy[1];
+  window.scrollTo(0,0);
+  $(&quot;heroTitle&quot;).focus({preventScroll:true});
+}
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+              <span class="homebar" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="side">
+        <p class="lead">Mara enters a normal month, a low month and her fixed costs. Every plan is then labeled against what's left in a low month, and she can't confirm until she has opened "What if I miss a payment?"</p>
+        <article class="card">
+          <h3 class="label eyebrow">Try it</h3>
+          <ul class="sq try">
+            <li>Normal month 1,800, low month 1,400, fixed costs 1,100</li>
+            <li>Two plans show as Risky, two as Fits</li>
+            <li>Select a plan: the confirm button stays locked until the missed-payment panel is opened</li>
+          </ul>
+        </article>
+        <div class="actions">
+          <button class="src-btn" type="button" id="protoFill">Fill example values</button>
+          <button class="src-btn" type="button" id="protoReset">Reset prototype</button>
+        </div>
+        <p class="hint">After clicking inside the prototype, click anywhere on this slide outside it to use the arrow keys again.</p>
+      </div>
+    </div>
+    <footer class="foot">
+      <span>Sample data, illustrative, not Riverty research. Same prototype as 04-roadmap/prototype.html, shown at a 390 × 844 phone viewport.</span>
+    </footer>
+  </div>
+</section>
+
+<!-- Slide 8, Validation -->
+<section class="slide t-haze" id="validation" data-theme="light" aria-label="Slide 8, Validation">
+  <div class="stage">
+    <div class="topbar">
+      <p class="label eyebrow">Slide 8 · Module 5</p>
+      <p class="label brandlabel">Riverty BU Collection</p>
+    </div>
+    <div class="titlerow top">
+      <h2 class="title">Validation</h2>
+      <dl class="abline">
+        <div><dt><span class="badge b-charcoal">Control (A)</span></dt><dd>Today’s journey: … the 6-month plan shown first, no fit labels or reasons.</dd></div>
+        <div><dt><span class="badge b-vanguard">Variant (B)</span></dt><dd>Plan Fit Check, tested as one bundled feature.</dd></div>
+      </dl>
+    </div>
+    <div class="body validation">
+      <aside class="callout hyp">
+        <h3 class="label">Hypothesis</h3>
+        <p>I believe that Plan Fit Check for quick closers with variable shift income will result in more plans that fit a low month and are kept, as measured by a 3 percentage points change in missed payments within 60 days (share of new agreements) within 6 weeks of enrollment plus 60 days of observation. We will protect the agreement rate on started journeys throughout the test.</p>
+      </aside>
+      <div class="vtiles">
+        <div class="tile wide"><span class="label">Primary metric</span><span class="mname">Missed payments within 60 days (share of new agreements)</span></div>
+        <div class="tile"><span class="label">Baseline</span><span class="stat">19.0%</span></div>
+        <div class="tile"><span class="label">MDE</span><span class="stat">3 pp</span></div>
+        <div class="tile"><span class="label">Sample per arm</span><span class="stat">2,518</span></div>
+        <div class="tile"><span class="label">Guardrail · agreement rate</span><span class="stat">≥ 45%</span></div>
+      </div>
+      <div class="rules">
+        <article class="card">
+          <span class="badge b-vanguard">Ship</span>
+          <p>If missed payments within 60 days drop by at least 3 percentage points at p &lt; 0.05, the agreement rate stays at 45% or higher, kept plans per starter are not lower than control, and agent contact within 7 days stays at 33% or lower.</p>
+        </article>
+        <article class="card">
+          <span class="badge b-charcoal">Iterate</span>
+          <p>If missed payments drop significantly but by less than 3 points, or drop by 3 points or more without reaching significance; we do not extend the test, we redesign and retest.</p>
+        </article>
+        <article class="card">
+          <span class="badge">Kill</span>
+          <p>If missed payments show no improvement or rise, or if the agreement rate falls below 45% or kept plans per starter fall below control, because then the result comes from filtering people out, not from better plans.</p>
+        </article>
+      </div>
+    </div>
+    <footer class="foot">
+      <span>Sample data, illustrative, not Riverty research.</span>
+      <button class="src-btn" type="button" data-open="d-validation">Full module text</button>
+    </footer>
+  </div>
+</section>
+
+<!-- Slide 9, Launch -->
+<section class="slide t-haze" id="launch" data-theme="light" aria-label="Slide 9, Launch">
+  <div class="stage">
+    <div class="topbar">
+      <p class="label eyebrow">Slide 9 · Module 6</p>
+      <p class="label brandlabel">Riverty BU Collection</p>
+    </div>
+    <h2 class="title">Launch</h2>
+    <div class="body launch">
+      <div class="gtm">
+        <article class="card">
+          <h3 class="label">Goal</h3>
+          <p class="big">Conversion</p>
+          <p class="small">The goal is converting journey starters into plans that are actually kept, which is also what the M5 test measures.</p>
+        </article>
+        <article class="card">
+          <h3 class="label">Audience</h3>
+          <p class="big">8,360 per month</p>
+          <p class="small">Primary: consumers in the German pilot who start an instalment journey, with quick closers on variable or shift income as the focus. Assumption: the data pack’s monthly volume represents the German pilot segment.</p>
+        </article>
+        <article class="card">
+          <h3 class="label">Tier</h3>
+          <p class="big">M, Targeted</p>
+          <p class="small">One journey in one market, about 8,360 starters a month.</p>
+        </article>
+      </div>
+      <div class="channels">
+        <h3 class="label eyebrow">Channels</h3>
+        <ul class="tags">
+          <li><strong>Owned</strong> The portal journey itself</li>
+          <li><strong>Owned</strong> The existing outreach letters, emails and SMS</li>
+          <li><strong>Owned</strong> Agent team briefings and the agent workspace, plus client account manager reviews</li>
+          <li class="out">No paid channels</li>
+        </ul>
+      </div>
+      <div class="dash">
+        <h3 class="label eyebrow head">Success metrics dashboard</h3>
+        <div class="kpis">
+          <div class="tile"><span class="label">Missed payments within 60 days</span><span class="stat">≤ 16.0%</span><span class="cap">from 19.0% today</span></div>
+          <div class="tile"><span class="label">Kept plans per journey starter</span><span class="stat">≥ 37.3%</span><span class="cap">baseline, aiming higher</span></div>
+          <div class="tile"><span class="label">Agreement rate on started journeys</span><span class="stat">≥ 45%</span><span class="cap">guardrail</span></div>
+          <aside class="bad">
+            <span class="badge">Bad signal</span>
+            <p>Missed payments fall while agreements fall too, meaning people are filtered out, not helped.</p>
+          </aside>
+        </div>
+      </div>
+    </div>
+    <footer class="foot">
+      <span>Sample data, illustrative, not Riverty research.</span>
+      <button class="src-btn" type="button" data-open="d-launch">Full module text</button>
+    </footer>
+  </div>
+</section>
+
+<!-- Slide 10, Story -->
+<section class="slide t-split" id="story" data-theme="split" aria-label="Slide 10, Story">
+  <div class="stage">
+    <div class="topbar">
+      <p class="label eyebrow">Slide 10 · Module 6</p>
+      <p class="label brandlabel">Riverty BU Collection</p>
+    </div>
+    <h2 class="title">Story</h2>
+    <div class="body story">
+      <div class="story-left">
+        <h3 class="label">Aha moment</h3>
+        <p class="copy">The same trap kept reappearing in different forms. SSR counts a plan as resolved when it’s created, the chat lifts agreements while plans break more often, and even my own experiment metric could have been gamed by filtering people out.</p>
+        <p class="statement">Every good metric needed a second number to keep it honest.</p>
+      </div>
+      <div class="story-right">
+        <div>
+          <h3 class="label">Friction</h3>
+          <p class="copy">The course pace left little room to discuss and challenge conclusions, so the real work was making sure AI output stayed honest to the data.</p>
+        </div>
+        <div>
+          <h3 class="label">Key takeaways</h3>
+          <p class="copy">Speed and motivation were the trap in this case, and clarity was the value. AI was strongest at synthesis and execution, and weakest at noticing when a metric could be gamed.</p>
+        </div>
+        <div>
+          <h3 class="label">What I would do next</h3>
+          <ul class="sq">
+            <li>Run the A/B test</li>
+            <li>Add a third arm to separate the plan ordering effect from the fit check</li>
+            <li>Test the pay day date (B6)</li>
+            <li>Shadow agents to find the workarounds no dashboard shows</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="foot">
+      <span>Sample data, illustrative, not Riverty research.</span>
+    </footer>
+  </div>
+</section>
+
+<!-- Thank you / Submit -->
+<section class="slide t-charcoal thanks" id="thanks" data-theme="dark" aria-label="Thank you and submit">
+  <div class="stage">
+    <div class="topbar">
+      <p class="label eyebrow">Final project · Product Management certification</p>
+      <p class="label brandlabel">Riverty BU Collection</p>
+    </div>
+    <div class="main">
+      <h2 class="display">Thank you</h2>
+      <p class="repo"><a href="https://github.com/Holger-product/pm-final-project">github.com/Holger-product/pm-final-project</a></p>
+      <div class="row">
+        <span class="ttag">Riverty cohort 2 · BU Collection</span>
+        <span class="ttag file">Prototype: 04-roadmap/prototype.html</span>
+      </div>
+      <div class="row">
+        <span class="cta">Submit to the learning platform</span>
+      </div>
+    </div>
+    <footer class="foot">
+      <span>Sample data, illustrative, not Riverty research.</span>
+    </footer>
+  </div>
+</section>
+
+</main>
+
+<!-- Full module text, Slide 5 -->
+<dialog class="src" id="d-strategy" aria-labelledby="d-strategy-h">
+  <div class="src-head">
+    <div><p class="label">Slide 5 · Strategy</p><h2 id="d-strategy-h">Full module text</h2></div>
+    <button class="src-close" type="button">Close</button>
+  </div>
+  <div class="src-body">
+    <div class="ann"><span class="badge">Superseded in Module 5</span><p>The Module 3 values below were updated in Module 5: target 16.0% or lower (3 percentage point MDE), agreement rate on started journeys at 45% or higher, agent contact within 7 days at 33% or lower, 2,518 agreements per arm, and SHIP at a drop of at least 3 points. Slide 8 shows the current plan.</p></div>
+
+    <h3>Problem hook</h3>
+    <h4>Responses</h4>
+    <ul>
+      <li><strong>Chosen path, which Riverty business-unit case are you using?:</strong> BU Collection: A Fair Way Forward. Product concept: Back in Flow, a digital instalment journey that helps consumers agree to a plan they can keep.</li>
+      <li><strong>Strategic crisis, based on the brief, if the company does nothing for 12 months, what happens to its market position?:</strong> The company will keep reporting a rising Self-Service Rate (looks great at a first glance) while about one in five new instalment plans breaks within 60 days. Agents will absorb the failures as costlier work. The north star will tell a success story the outcomes don’t support.</li>
+      <li><strong>Moment of misery, what is the user likely doing outside the product (Google, spreadsheets, a competitor) because your tool isn’t serving them?:</strong> The user is currently forced to leave the portal and call an agent, because she doesn’t understand why income is asked, can only see one claim at a time, and fears a wrong answer will be used against her. On the phone she repeats everything she already entered online. If she pushes through alone instead, she picks the shortest plan because it looks right, and misses the second payment.</li>
+      <li><strong>Problem hook, summarize the business risk and user pain into one urgent sentence.:</strong> We must solve a north star that rewards broken plans, with SSR rising while one in five new plans misses a payment within 60 days, by addressing consumers who are pushed to agree quickly instead of agreeing to a plan they understand and can actually keep.</li>
+      <li><strong>Value proposition, based on the initiative in your assigned Riverty case, what is the new value and why is it urgent to launch now?:</strong> For consumers with one or more open claims and irregular income, we will show exactly what they owe across all claims and what happens if something goes wrong, before they commit, so they choose a plan they can keep. It’s urgent because every month at today’s baseline adds about 730 broken plans that the current north star doesn’t show.</li>
+    </ul>
+    <h4>Cold-read your own hook</h4>
+    <ul>
+      <li><strong>Is the business risk high enough to justify a new initiative, a high-stakes threat, or a minor inconvenience?:</strong> It’s a high-stakes threat, not an inconvenience. Broken plans affect recovery, and the leading metric hides the problem, so it won’t fix itself.</li>
+      <li><strong>Is the moment of misery a systemic problem or just an edge case?:</strong> Systemic. The top three agent contact reasons (missed payment consequences, combining claims, why income is asked) make up 52% of contacts. Missed payments rose from 15.2% to 19.0% over six months, and multi-claim consumers (about a third of starters) agree far less often.</li>
+      <li><strong>Does the value proposition actually remove the obstacle you identified, or is it a generic feature?:</strong> Yes, because it targets the two failure points directly: uncertainty before commitment and plans that don’t fit the consumer’s real income. A generic feature would be “a better chat” or “a faster flow,” which would make the speed trap worse.</li>
+    </ul>
+
+    <h3>Value proposition</h3>
+    <p>For consumers with one or more open claims and irregular income, we will show exactly what they owe and what happens if something goes wrong, before they commit, so they choose a plan they can keep. It’s urgent because every month at today’s baseline adds about 730 broken plans that the current north star doesn’t show.</p>
+
+    <h3>Hypothesis</h3>
+    <h4>Hypothesis and metrics: Back in Flow</h4>
+    <p><strong>Case:</strong> Riverty BU Collection, A Fair Way Forward<br><strong>Module:</strong> 3, data-backed product hypothesis<br><strong>Persona:</strong> The quick closer (Mara)</p>
+    <h4>Hypothesis</h4>
+    <p>Based on consumers like N-02 who pick the plan that "looked like the right answer" and miss the second payment, and missed payments rising from 15.6% to 18.4% after the plan screen put the 6-month plan first (19.0% by Month 6), I believe that <strong>showing affordability fit and missed-payment consequences before confirmation</strong> for <strong>quick closers with variable income</strong> will result in <strong>more plans being kept</strong>, as measured by a drop in <strong>missed payments within 60 days from 19.0% to 15.5% or lower</strong>. I will protect the <strong>agreement rate at 44% or higher</strong> and will make a go/no-go decision after <strong>6 weeks of enrollment and 60 days of observation</strong>.</p>
+    <h4>Starting point from Modules 1 and 2</h4>
+    <table>
+      <thead><tr><th>Field</th><th>Content</th></tr></thead>
+      <tbody>
+        <tr><td>Role</td><td>Consumer with one or more open claims and variable shift income who opens the portal on her phone after a reminder and wants it done fast.</td></tr>
+        <tr><td>Goal</td><td>Agree to a monthly plan she can actually keep, so she can stop worrying and get on with her life.</td></tr>
+        <tr><td>Friction</td><td>Picks the shortest plan because it looks right, or lets the chat approve one in a minute, without knowing what happens after a missed payment. Misses the second payment.</td></tr>
+        <tr><td>Workaround</td><td>Guesses her income and takes the fastest path to a yes. When the plan breaks, she calls an agent who asks again for everything she entered online.</td></tr>
+        <tr><td>Problem Hook (M1)</td><td>We must solve a north star that rewards broken plans, with SSR rising while one in five new plans misses a payment within 60 days, by addressing consumers who are pushed to agree quickly instead of agreeing to a plan they understand and can actually keep.</td></tr>
+        <tr><td>Value Proposition (M1)</td><td>For consumers with one or more open claims and irregular income, we will show exactly what they owe across all claims and what happens if something goes wrong, before they commit, so they choose a plan they can keep.</td></tr>
+      </tbody>
+    </table>
+
+    <h5>1. Where the experience drops (funnel.csv)</h5>
+    <p><strong>Verdict: nuance, with one partial contradiction.</strong></p>
+    <table>
+      <thead><tr><th>Step</th><th class="n">People</th><th class="n">% of previous step</th></tr></thead>
+      <tbody>
+        <tr><td>Consumers receiving outreach</td><td class="n">100,000</td><td class="n">100.0%</td></tr>
+        <tr><td>Entered portal</td><td class="n">38,000</td><td class="n">38.0%</td></tr>
+        <tr><td>Started instalment journey</td><td class="n">8,360</td><td class="n">22.0%</td></tr>
+        <tr><td>Reached affordability questions</td><td class="n">7,364</td><td class="n">88.1%</td></tr>
+        <tr><td>Reached income document step</td><td class="n">5,943</td><td class="n">80.7%</td></tr>
+        <tr><td>Reached plan review</td><td class="n">4,630</td><td class="n">77.9%</td></tr>
+        <tr><td>Agreement created</td><td class="n">3,846</td><td class="n">83.1%</td></tr>
+        <tr><td>No missed payment within 60 days</td><td class="n">3,115</td><td class="n">81.0%</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>Largest loss inside the journey: document step to plan review, 1,313 people. T-201 reports 853 journeys where the document never arrived, likely a large share, though the pack doesn't confirm the overlap.</li>
+      <li>The commitment moment is not the leak: 83.1% agree at plan review. The leak comes after agreement: 731 plans break within 60 days. This confirms the quick closer pattern.</li>
+      <li>Contradiction in volume: the largest loss happens before the journey starts (38,000 to 8,360). This hypothesis does not address it.</li>
+      <li><strong>Metric to request:</strong> exit reasons or page behavior between portal entry and journey start.</li>
+    </ul>
+
+    <h5>2. What changed over time (monthly_trend.csv)</h5>
+    <p><strong>Verdict: confirms the core of the hook.</strong></p>
+    <table>
+      <thead><tr><th>Month</th><th class="n">Agreement rate</th><th class="n">Agent contact 7d</th><th class="n">Missed payment 60d</th><th class="n">SSR</th><th>First plan option</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="n">43.1%</td><td class="n">33.4%</td><td class="n">15.2%</td><td class="n">31.1%</td><td>12 months</td></tr>
+        <tr><td>2</td><td class="n">43.8%</td><td class="n">33.0%</td><td class="n">15.9%</td><td class="n">31.8%</td><td>12 months</td></tr>
+        <tr><td>3</td><td class="n">44.2%</td><td class="n">32.6%</td><td class="n">15.6%</td><td class="n">32.3%</td><td>12 months</td></tr>
+        <tr><td>4</td><td class="n">45.6%</td><td class="n">31.9%</td><td class="n">18.4%</td><td class="n">33.8%</td><td>6 months</td></tr>
+        <tr><td>5</td><td class="n">46.3%</td><td class="n">31.4%</td><td class="n">18.8%</td><td class="n">34.4%</td><td>6 months</td></tr>
+        <tr><td>6</td><td class="n">46.0%</td><td class="n">31.0%</td><td class="n">19.0%</td><td class="n">34.7%</td><td>6 months</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>Showing the 6-month plan first lifted agreement rate and SSR while missed payments jumped. The north star improved while outcomes got worse.</li>
+      <li>Nuance: agent contact fell steadily before Month 4 as well, so the phone workaround is not growing. The pain shifted from calling to breaking.</li>
+      <li><strong>Metric to request:</strong> maturity date of each month's 60-day cohort, since Months 5 and 6 may not be fully observed.</li>
+    </ul>
+
+    <h5>3. Which users feel it (segments.csv)</h5>
+    <p><strong>Verdict: confirms the persona, with nuance.</strong></p>
+    <table>
+      <thead><tr><th>Segment</th><th class="n">Agreement rate</th><th class="n">Agent contact 7d</th><th class="n">Missed payment 60d</th></tr></thead>
+      <tbody>
+        <tr><td>Variable or shift income</td><td class="n">41.6%</td><td class="n">32.7%</td><td class="n">22.5%</td></tr>
+        <tr><td>Fixed salary</td><td class="n">48.1%</td><td class="n">30.2%</td><td class="n">17.4%</td></tr>
+        <tr><td>One open claim</td><td class="n">52.1%</td><td class="n">25.6%</td><td class="n">18.1%</td></tr>
+        <tr><td>Two open claims</td><td class="n">37.7%</td><td class="n">40.0%</td><td class="n">21.4%</td></tr>
+        <tr><td>Three or more open claims</td><td class="n">27.6%</td><td class="n">43.0%</td><td class="n">21.2%</td></tr>
+        <tr><td>Used chat assistant</td><td class="n">53.3%</td><td class="n">27.1%</td><td class="n">21.6%</td></tr>
+        <tr><td>Did not use chat</td><td class="n">44.4%</td><td class="n">31.9%</td><td class="n">18.3%</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>Variable earners carry the highest missed payment rate: the quick closer.</li>
+      <li>Multi-claim consumers show low agreement and high agent contact, with median instalments of €88.73 (two claims) and €114.84 (three or more) vs. €58.72 (one claim). That fits the cautious checker plus an affordability issue.</li>
+      <li>Chat users confirm the speed trap: more agreements, more broken plans. This is a correlation, not proof of cause.</li>
+      <li>Surprise: purchased and client portfolios perform almost identically (missed payments 19.4% vs. 18.8%), despite T-203.</li>
+      <li><strong>Metric to request:</strong> cross-tab of income pattern by number of claims, since Mara sits in both groups.</li>
+    </ul>
+
+    <h4>Hypothesis components</h4>
+    <table>
+      <thead><tr><th>Component</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>Qualitative evidence</td><td>"I picked the plan with the lowest number of months because it looked like the right answer. The amount was too high and I missed the second payment." (N-02). Backed by N-05: the chat approved a plan in a minute without explaining late payments.</td></tr>
+        <tr><td>Quantitative evidence</td><td>Missed payments within 60 days rose from 15.6% to 18.4% after the plan screen change, reaching 19.0% (731 of 3,846 agreements) by Month 6. Variable earners miss most at 22.5%.</td></tr>
+        <tr><td>Problem</td><td>Consumers commit without checking whether the amount fits their real income or understanding what happens after a missed payment, so the plans counted as resolved are the ones that break.</td></tr>
+        <tr><td>Strategic outcome</td><td>More consumers choose a plan that fits and keep paying. Revenue: cash actually recovered over the plan's lifetime. Retention: plans kept to the end. Churn: fewer broken plans returning to agents. Also protects client retention (N-10).</td></tr>
+        <tr><td>Primary success metric</td><td>Missed payments within 60 days as a share of agreements. Baseline 19.0%, target 15.5% or lower (pre-change level). Earlier signal to request: first instalment paid on time.</td></tr>
+        <tr><td>Guardrail metric</td><td>Agreement rate must stay at 44% or higher. Secondary: agent contact within 7 days must not rise above 31%.</td></tr>
+        <tr><td>Decision window</td><td>A/B test across all journey starters: 6 weeks enrollment, then 60 days observation, decision about 3.5 months after launch.</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Decision rules</h4>
+    <ul>
+      <li><strong>Go:</strong> missed payments at least 2 percentage points lower than control, agreement rate at 44% or higher.</li>
+      <li><strong>Early kill check after 30 days:</strong> agreement rate below 42% means stop and rework.</li>
+      <li><strong>Sample size (my estimate):</strong> detecting 19.0% vs. 15.5% needs about 1,800 agreements per variant, reached in roughly 4 to 6 weeks at about 3,800 agreements per month.</li>
+    </ul>
+
+    <h4>Open questions</h4>
+    <ol>
+      <li>Why do 78% of portal visitors never start a journey?</li>
+      <li>How much of the document-step loss is caused by the T-201 upload bug?</li>
+      <li>Are the 60-day figures for Months 5 and 6 fully mature?</li>
+      <li>How do variable income and multiple claims interact?</li>
+      <li>Does the chat cause broken plans, or do riskier consumers choose the chat?</li>
+    </ol>
+
+    <h4>Key learning</h4>
+    <p>My Module 1 hook said the north star rewards broken plans. The data confirmed that and narrowed it: the leak isn't at commitment (83% agree at plan review) but after it, and it's strongest for variable earners, so my hypothesis targets plans kept, not plans created.</p>
+  </div>
+</dialog>
+
+<!-- Full module text, Slide 6 -->
+<dialog class="src" id="d-research" aria-labelledby="d-research-h">
+  <div class="src-head">
+    <div><p class="label">Slide 6 · Research</p><h2 id="d-research-h">Full module text</h2></div>
+    <button class="src-close" type="button">Close</button>
+  </div>
+  <div class="src-body">
+    <h3>Competitive analysis / workaround</h3>
+    <h4>Responses</h4>
+    <ul>
+      <li><strong>Role, who are you solving for? (the specific user segment or profile):</strong> The quick closer: a consumer with one or more open claims and variable shift income who opens the portal on her phone after a reminder and wants it done fast.</li>
+      <li><strong>Goal, what is this user ultimately trying to achieve?:</strong> Agree to a monthly plan she can actually keep, so she can stop worrying and get on with her life.</li>
+      <li><strong>Friction, the main barrier (moment of misery) stopping them from succeeding:</strong> She picks the shortest plan because it looks like the right answer, or lets the chat approve one in a minute, without knowing what happens if she misses a payment, and then misses the second one.</li>
+      <li><strong>External tools, the outside platforms or tools the user is forced to use:</strong> The phone line to a collection agent and the paper letters she uses as the reference for her amounts. Assumption, not in the evidence: she checks her banking app to guess what’s left before payday.</li>
+      <li><strong>The process, the 3 to 5 manual steps the user takes to get the job done:</strong>
+        <ol>
+          <li>Opens the reminder link on her break and sees only one claim at a time.</li>
+          <li>Guesses an income figure, or switches to the chat for a quick yes.</li>
+          <li>Picks the shortest plan because it looks like the right answer.</li>
+          <li>Misses the second payment, sometimes after a reminder that arrived too late.</li>
+          <li>Calls an agent, who asks again for the details she already entered online.</li>
+        </ol>
+      </li>
+      <li><strong>Core frustration, the exact moment the process feels most “broken”:</strong> The moment of confirmation: she says yes without knowing the consequences of a missed payment, and the system treats her case as resolved.</li>
+      <li><strong>The evidence, a specific quote or behavior from the research that proves this:</strong> “I picked the plan with the lowest number of months because it looked like the right answer. The amount was too high and I missed the second payment.” (N-02), backed by the chat confirming plans without missed-payment rules (N-05, T-208) and agents repeating checks (N-08).</li>
+      <li><strong>Your journey map file name (e.g. journey-map.html):</strong> journey-map.md</li>
+    </ul>
+
+    <h3>Journey map</h3>
+    <ol>
+      <li>See the whole picture: all claims and amounts in one view.</li>
+      <li>Understand before answering: plain “why we ask” notes and a low-month income option.</li>
+      <li>Choose a plan I can keep: fit labels and missed-payment consequences before confirming. This is the moment of misery today.</li>
+      <li>Stay on track or get help: reminders before due dates, and an agent who sees what she entered.</li>
+    </ol>
+  </div>
+</dialog>
+
+<!-- Full module text, Slide 7 -->
+<dialog class="src" id="d-blueprint" aria-labelledby="d-blueprint-h">
+  <div class="src-head">
+    <div><p class="label">Slide 7 · Blueprint</p><h2 id="d-blueprint-h">Full module text</h2></div>
+    <button class="src-close" type="button">Close</button>
+  </div>
+  <div class="src-body">
+    <div class="ann"><span class="badge">Superseded in Module 5</span><p>The strategic anchors and the PRD below still state the Module 3 values (15.5%, 44%, 31%). Module 5 sets missed payments within 60 days at 16.0% or lower, the agreement rate on started journeys at 45% or higher, and agent contact within 7 days at 33% or lower. Slide 8 shows the current plan.</p></div>
+
+    <h3>Prioritization / roadmap</h3>
+    <h4>Your strategic anchors</h4>
+    <ul>
+      <li><strong>Persona (M2), who are you solving for?:</strong> The quick closer: a consumer with variable shift income and one or more claims who wants it done fast and commits without checking fit or consequences.</li>
+      <li><strong>Primary success metric (M3), your leading indicator:</strong> Missed payments within 60 days as a share of agreements, from 19.0% to 15.5% or lower. As the earliest signal, first instalment paid on time (to be requested, not in the data pack).</li>
+      <li><strong>Moment of misery (M2), the specific friction blocking the goal:</strong> She picks the shortest plan because it looks like the right answer, or lets the chat approve one in a minute, then misses the second payment.</li>
+      <li><strong>Guardrail metric (M3), what must not drop or break:</strong> Agreement rate at 44% or higher (secondary: agent contact within 7 days not above 31%).</li>
+    </ul>
+    <h4>Scan the backlog &amp; set a human baseline</h4>
+    <ul>
+      <li><strong>My instinctive “quick wins” before touching the AI (2 to 3 feature IDs + why):</strong> B2, B5 and B6. B2 is a text change that addresses fear of misuse (N-06, T-206). B5 fixes a known mobile bug that loses 853 documents a month (T-201). B6 looks small and fits shift workers, who miss payments most often (22.5%). B7 also looks like a quick win at first glance, which is exactly why it needs checking against the evidence.</li>
+    </ul>
+    <h4>Audit, override &amp; decide</h4>
+    <ul>
+      <li><strong>Where did you override the AI? (feature + old vs. new score + why):</strong> B7, from a likely Value 4 to 1: “raise recovery” sounds valuable, but Month 4 already showed that moving a shorter plan up raised missed payments from 15.6% to 18.4%. B6, from Now to Next with the same scores: it’s a quick win, but launching it alongside B3 would blur the A/B test. B3, from a likely Value 4 to 5: it directly targets plans that don’t fit real income, the core of my primary metric.</li>
+      <li><strong>Did the AI over-value a Sales/Eng request your M2 interviews don’t support?:</strong> Yes, B7 is a recovery-driven request, and N-02 shows the opposite effect: the consumer chose the shortest plan because it looked right, and broke it. B8 is the engineering-friendly “AI everywhere” idea, while N-05 shows the chat approves fast without explaining consequences.</li>
+      <li><strong>Did it underweight something your M3 cohort/funnel data strongly supports?:</strong> B3. The data shows the leak comes after commitment, not at it: 83.1% agree at plan review, but 731 of 3,846 plans break within 60 days, most often among variable earners. B1 is also easy to underrate, because multi-claim consumers agree far less often (37.7% and 27.6% vs. 52.1%).</li>
+    </ul>
+    <h4>Generate your interactive roadmap</h4>
+    <ul>
+      <li><strong>My “Now” lane (this sprint), the 2 to 3 quick wins I’ll build first:</strong> B3 affordability check with missed-payment consequences before confirmation, B2 income explainer, and the upload bug fix from B5. B3 is not a strict quick win (Effort 3), but it’s the feature my hypothesis tests, so it belongs in Now.</li>
+      <li><strong>What I cut, and the “no” I’m protecting the scope from:</strong> B7 and B8. The “no” protects against two pressures: getting recovery up fast by nudging people into short plans, and putting AI everywhere because it looks good on the north star. Both lift SSR and break more plans.</li>
+      <li><strong>Prototype/roadmap screenshot link (paste into your deliverables):</strong> <span class="placeholder">Not provided yet: no roadmap screenshot is committed to 04-roadmap/</span></li>
+    </ul>
+
+    <h3>PRD highlights</h3>
+    <h4>Plan Fit Check, Simplified PRD (Riverty BU Collection, A Fair Way Forward)</h4>
+    <p><strong>Scenario:</strong> Riverty BU Collection, A Fair Way Forward</p>
+    <p><strong>Author:</strong> Me · <strong>Status:</strong> Draft · <strong>Target:</strong> High-Fidelity Prototype · <strong>Persona:</strong> The quick closer: a consumer with variable shift income and one or more claims who wants it done fast and commits without checking fit or consequences.</p>
+    <h4>1. The Big Picture</h4>
+    <ul>
+      <li><strong>Vision:</strong> Every consumer leaves the portal with a plan that fits their real income and knows what happens if something goes wrong.</li>
+      <li><strong>Press release:</strong> Starting today, consumers who set up an instalment plan with Riverty no longer have to guess which plan is the “right answer.” Plan Fit Check asks three short questions about a normal month, a low month and fixed costs, explains why, and then shows which plans fit, which are tight, and which are risky, with a clear reason for each.
+        <p>Before anyone confirms, they see exactly what happens if a payment is missed. For consumers like Mara, who works shifts and used to pick the shortest plan only to miss the second payment, that means agreeing to something she can keep and then getting on with her life.</p></li>
+      <li><strong>Success metric:</strong> Missed payments within 60 days as a share of agreements, from 19.0% to 15.5% or lower.</li>
+      <li><strong>Guardrail:</strong> Agreement rate at 44% or higher.</li>
+    </ul>
+    <h5>User stories</h5>
+    <ul>
+      <li>As a consumer with variable income, I want to enter both a normal and a low month, so that the plans reflect what I can pay when money is tight. Acceptance: the lower value drives the labels, and people with a steady income can mark it as the same every month.</li>
+      <li>As a consumer in a hurry, I want to see at a glance which plans fit my budget, so that I don’t pick a plan just because it looks like the right answer. Acceptance: every plan shows a label and a one-line reason, best fit first.</li>
+      <li>As a consumer about to commit, I want to know what happens if I miss a payment, so that I’m not surprised later. Acceptance: the confirm button stays disabled until the consequences for the selected plan have been opened.</li>
+    </ul>
+    <h5>Screens to build</h5>
+    <ul>
+      <li>1. Entry point, “Your Monthly Budget”: three number fields (normal month, low month, fixed costs), a “why we ask” note under each, a “same every month” option, the open amount, and a Show my plans button.</li>
+      <li>2. Feature core, “Plans That Fit You”: plan options (3, 6, 12 and 18 months) with monthly amount, Fits / Tight / Risky label, one-line reason, budget bar, and an expandable “What if I miss a payment?” panel for the selected plan.</li>
+      <li>3. Success, “Your Plan Is Set Up”: summary of monthly amount, number of payments, first due date and fit, missed-payment rules, and a “Talk to an agent” link.</li>
+    </ul>
+    <h5>Functional requirements</h5>
+    <ul>
+      <li>The budget form has no more than three fields and can be completed in under 60 seconds.</li>
+      <li>Remaining budget is calculated as the low-month income minus fixed costs.</li>
+      <li>Each plan is labeled Fits if the instalment is up to 40% of the remaining budget, Tight from 40% to 70%, and Risky above 70% (prototype thresholds, not policy).</li>
+      <li>Plans are sorted best fit first, shortest first within the same label, and no plan is preselected.</li>
+      <li>Every label shows a reason, for example “€100 is 33% of what’s left after fixed costs.”</li>
+      <li>The confirm button stays disabled until the missed-payment panel has been opened for the currently selected plan. Switching plans resets this.</li>
+      <li>Choosing a Risky plan triggers a second confirmation that repeats the reason.</li>
+      <li>The confirmation screen shows monthly amount, number of payments, first due date and missed-payment rules.</li>
+    </ul>
+    <h5>Smart behaviors (Situation → Outcome)</h5>
+    <ul>
+      <li>If remaining budget is zero or negative → no plan is labeled Fits, and a “talk to an agent” path is shown.</li>
+      <li>If all plans are Risky → the longest plan is listed first, with the agent option highlighted.</li>
+      <li>If low-month income is higher than normal-month income → show a gentle prompt to check the numbers, and allow continuing.</li>
+      <li>If income is marked as the same every month → the low-month field is filled from the normal month.</li>
+      <li>If the consumer switches plans after opening the panel → the confirm button locks again until the new plan’s panel is opened.</li>
+      <li>If the consumer selects a Risky plan → show a second confirmation with the reason.</li>
+      <li>If the consumer goes back to the budget screen → their answers are kept.</li>
+    </ul>
+    <h5>Technical constraints</h5>
+    <ul>
+      <li>One self-contained HTML file with inline CSS and plain JavaScript. No external APIs, no login, no database, no network calls, no data stored or sent anywhere. The open amount (€1,200) is sample data, plans have no fees or interest, and the first payment is due 14 days after confirmation. The missed-payment text is placeholder copy marked “sample text, to be confirmed by Legal.” Visual style follows the Riverty Classic Design Guidelines (Guidelines V2).</li>
+    </ul>
+    <h5>Features out</h5>
+    <ul>
+      <li>One plan for several claims (B1), pay day date picker (B6), document upload or skip (B5), chat assistant (B8), agent handoff summary (B4), real payment processing, real credit or affordability checks.</li>
+    </ul>
+    <h5>Edge cases &amp; safety guard</h5>
+    <ul>
+      <li>Empty fields, non-numeric input, negative numbers, values above €20,000 a month, and fixed costs higher than income all show a clear inline message or the agent path instead of a misleading result. The prototype must never preselect the shortest or highest instalment, never present placeholder legal text as real policy, never store or send entered data, and never use shaming or threatening language.</li>
+    </ul>
+    <h5>Decision log</h5>
+    <ul>
+      <li>1 Risky plans are warned about, not blocked: consumers keep the choice, which respects their autonomy and the fairness guardrail.</li>
+      <li>2 The pay day picker is excluded from this version, so the A/B test isolates the effect of the fit check and the consequence panel.</li>
+    </ul>
+    <h5>Evals</h5>
+    <ul>
+      <li>Accuracy: 100% of plans in ten prepared test cases receive the correct label according to the 40% and 70% thresholds.</li>
+      <li>Time on task: median under 2 minutes from first input to confirmation in a hallway test.</li>
+      <li>Safety: in 100% of confirmations, the missed-payment panel for the confirmed plan was opened first, and no plan was ever preselected.</li>
+    </ul>
+    <h4>MoSCoW scope</h4>
+    <ul>
+      <li><strong>Must:</strong> Affordability input with three fields and a “why we ask” note; Option to mark income as about the same every month; Plan labels Fits, Tight, Risky against remaining budget; Best-fitting plan first, no plan preselected; Missed-payment consequences shown before confirmation; One-line reason for every label; Confirmation summary with amount, payments, first due date and missed-payment rules</li>
+      <li><strong>Should:</strong> Answers kept when going back (T-204); Plain hint on how to reach an agent if no plan fits; Second confirmation when a Risky plan is chosen</li>
+      <li><strong>Could:</strong> Visual budget bar per plan; View of all open claims (read-only); Simple language toggle</li>
+      <li><strong>Won't (now):</strong> One plan for several claims (B1); Pay day date picker (B6); Document upload or skip (B5); Chat assistant (B8); Agent handoff summary (B4); Real payment processing or credit checks</li>
+    </ul>
+    <p><strong>Prototype file:</strong> 04-roadmap/prototype.html</p>
+  </div>
+</dialog>
+
+<!-- Full module text, Slide 8 -->
+<dialog class="src" id="d-validation" aria-labelledby="d-validation-h">
+  <div class="src-head">
+    <div><p class="label">Slide 8 · Validation</p><h2 id="d-validation-h">Full module text</h2></div>
+    <button class="src-close" type="button">Close</button>
+  </div>
+  <div class="src-body">
+    <h3>Experiment plan</h3>
+    <h4>Parameters</h4>
+    <table>
+      <thead><tr><th>Parameter</th><th>Decision</th></tr></thead>
+      <tbody>
+        <tr><td>Feature under test</td><td>Plan Fit Check</td></tr>
+        <tr><td>Persona</td><td>quick closers with variable shift income</td></tr>
+        <tr><td>Expected outcome</td><td>more plans that fit a low month and are kept</td></tr>
+        <tr><td>Primary success metric</td><td>missed payments within 60 days (share of new agreements)</td></tr>
+        <tr><td>Baseline rate</td><td>19.0% (3,846 new agreements per month)</td></tr>
+        <tr><td>Guardrail metric</td><td>the agreement rate on started journeys</td></tr>
+        <tr><td>Guardrail boundary</td><td>a level below 45%</td></tr>
+        <tr><td>Second guardrail</td><td>Kept plans per journey starter must not be lower than control (baseline 37.3%), which catches a result produced by filtering people out instead of better plans. Agent contact within 7 days must stay at 33% or lower (baseline 31.0%).</td></tr>
+        <tr><td>Minimum Detectable Effect</td><td>3 percentage points</td></tr>
+        <tr><td>Sample size per arm</td><td>2,518</td></tr>
+        <tr><td>Traffic split</td><td>50 / 50, randomized per consumer at journey start</td></tr>
+        <tr><td>Test duration</td><td>6 weeks of enrollment plus 60 days of observation</td></tr>
+        <tr><td>Significance threshold</td><td>p &lt; 0.05</td></tr>
+      </tbody>
+    </table>
+    <h4>Control vs. Variant</h4>
+    <ul>
+      <li><strong>Control (A):</strong> Today’s journey: no explanation of how income answers are used, the 6-month plan shown first, no fit labels or reasons, and confirmation possible without seeing what happens after a missed payment. This is where the quick closer picks the plan that “looked like the right answer” (N-02) and where missed payments rose from 15.6% to 18.4% after the plan screen change, reaching 19.0% by Month 6.</li>
+      <li><strong>Variant (B):</strong> Plan Fit Check, tested as one bundled feature, with the result attributed to the feature as a whole. Screen 1, “Your Monthly Budget”: normal month, low month and fixed costs, a “why we ask” note under each (this includes the income explainer B2), and an “about the same every month” option. Screen 2, “Plans That Fit You”: the same plan lengths as control, labeled Fits (up to 40% of the remaining low-month budget), Tight (40% to 70%) or Risky (above 70%), each with a one-line reason, best fit first, nothing preselected. Confirmation stays locked until “What if I miss a payment?” has been opened for the selected plan, and resets when the plan changes. Risky plans trigger a second confirmation. Screen 3, “Your Plan Is Set Up”: amount, number of payments, first due date and missed-payment rules. Known limit: the variant also removes the 6-month-first ordering, which alone moved missed payments by about 3 points in Month 4, so the test can’t separate ordering from the fit check.</li>
+      <li><strong>Held constant (isolation check):</strong> Outreach letters, emails and SMS. Eligibility rules and qualifying claims. Claim amounts, plan lengths, fees and interest. The chat assistant, available the same way in both arms. Reminder timing, including any fix for T-207, shipped to both arms or neither. The mobile upload fix (B5) ships to both arms before the test. The income explainer (B2) is part of the variant only and doesn’t ship separately until after the test. Agent scripts and the agent screen. Portal version apart from the variant screens. Pre-registered diagnostics, not decision metrics: share of confirmations on Risky plans, agent contacts about missed payments, and a directional read for shift workers only.</li>
+    </ul>
+    <h4>Hypothesis</h4>
+    <blockquote>I believe that Plan Fit Check for quick closers with variable shift income will result in more plans that fit a low month and are kept, as measured by a 3 percentage points change in missed payments within 60 days (share of new agreements) within 6 weeks of enrollment plus 60 days of observation. We will protect the agreement rate on started journeys throughout the test.</blockquote>
+    <h4>Shipping criteria</h4>
+    <p>We will SHIP if missed payments within 60 days drop by at least 3 percentage points at p &lt; 0.05, the agreement rate stays at 45% or higher, kept plans per starter are not lower than control, and agent contact within 7 days stays at 33% or lower. We will ITERATE if missed payments drop significantly but by less than 3 points, or drop by 3 points or more without reaching significance; we do not extend the test, we redesign and retest. We will KILL if missed payments show no improvement or rise, or if the agreement rate falls below 45% or kept plans per starter fall below control, because then the result comes from filtering people out, not from better plans. The read date is fixed at the end of the 60-day observation window, about 15 weeks after launch. Guardrails are checked weekly for harm only, and the test stops early if the variant’s agreement rate falls below 42%.</p>
+  </div>
+</dialog>
+
+<!-- Full module text, Slide 9 -->
+<dialog class="src" id="d-launch" aria-labelledby="d-launch-h">
+  <div class="src-head">
+    <div><p class="label">Slide 9 · Launch</p><h2 id="d-launch-h">Full module text</h2></div>
+    <button class="src-close" type="button">Close</button>
+  </div>
+  <div class="src-body">
+    <h3>GTM strategy</h3>
+    <h4>GTM Launch Plan, Riverty BU Collection, A Fair Way Forward</h4>
+    <table>
+      <thead><tr><th>Field</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Feature</td><td>Plan Fit Check (B3): affordability input, plans labeled Fits, Tight or Risky with a reason, best fit first, and confirmation locked until “What if I miss a payment?” has been opened for the selected plan.</td></tr>
+        <tr><td>Goal</td><td>Conversion</td></tr>
+        <tr><td>Launch tier</td><td>M, Targeted</td></tr>
+      </tbody>
+    </table>
+    <h4>Goal &amp; Audience</h4>
+    <ul>
+      <li><strong>Goal:</strong> Conversion, The feature lives inside the existing journey, and consumers reach it through outreach that already exists, so awareness isn’t the problem. The goal is converting journey starters into plans that are actually kept, which is also what the M5 test measures.</li>
+      <li><strong>Target audience:</strong> Primary: consumers in the German pilot who start an instalment journey, 8,360 per month (gtm_audience.csv), with quick closers on variable or shift income as the focus. Assumption: the data pack’s monthly volume represents the German pilot segment, since the brief leaves it open. Secondary: about 10 collection agents in the pilot team (assumption, based on roughly 500 agent hours a month of journey-related contacts), client account managers, and legal and compliance, because they have to explain, report and approve what consumers see.</li>
+    </ul>
+    <h4>Launch Tier</h4>
+    <ul>
+      <li><strong>M, Targeted</strong>, One journey in one market, about 8,360 starters a month. No new revenue line, but recovery over the plan’s lifetime and client reporting are directly affected, with about 115 fewer broken plans a month at the MDE. Silence is risky on the internal and client side: agents who can’t explain a Risky label create more calls, and clients who see agreement numbers shift without context complain about their reporting (N-10). For consumers this is a release they meet inside the journey, with no marketing, since marketing to people in debt would be inappropriate. For agents, account managers and compliance it’s a launch.</li>
+    </ul>
+    <h4>Channels</h4>
+    <ol>
+      <li><strong>Owned: The portal journey itself, where the quick closer already is after the reminder, so the feature reaches her at the moment of misery without any extra message.</strong></li>
+      <li><strong>Owned: The existing outreach letters, emails and SMS, with one added line after the test: “See which plan fits your budget before you agree.” Unchanged during the A/B test to keep the arms isolated.</strong></li>
+      <li><strong>Owned: Agent team briefings and the agent workspace, plus client account manager reviews for clients, reaching each group through routines that already exist. No paid channels, because paid media aimed at consumers in debt would conflict with the fairness guardrail.</strong></li>
+    </ol>
+    <h4>Enablement &amp; Assets</h4>
+    <p>Agents: a one-page explainer of how Fits, Tight and Risky are calculated, an FAQ for “why was my plan labeled Risky?” and “what happens if I miss a payment?”, and a 30-minute briefing. Client account managers: a one-pager on test design, metrics and guardrails, so clients can read changes in their reporting. Legal and compliance: the final missed-payment text replacing the prototype placeholder, and documentation of how labels are calculated, so recommendations are explainable (N-12). AI drafts the FAQs, one-pagers and result summaries, always reviewed by a person. AI is not used for the final legal text, for any decision about an individual consumer without human review, or for client conversations.</p>
+    <h4>Ownership, Budget &amp; Timeline</h4>
+    <ul>
+      <li><strong>Ownership &amp; budget:</strong> Holger (Senior PM) owns the launch plan, the A/B test and post-launch metrics. [Name], legal counsel for collections Germany, owns the missed-payment text and explainability documentation. [Name], pilot team lead, owns the agent briefing and FAQ. [Name], client account manager, owns the client one-pager and client conversations. [Name], product analyst, owns instrumentation and the test read. No media spend. Costs extra: legal review time, about 10 agent hours for briefings, and analytics work for two metrics not yet tracked, kept plans per starter and first instalment paid on time. Asset gap: no approved missed-payment wording exists yet, and the variant can’t launch without it.</li>
+      <li><strong>Timeline:</strong> Before Phase 1 (4 weeks): legal text approved, instrumentation live, upload fix (B5) shipped to everyone, agents briefed, client account managers informed. Phase 1, beta (weeks 1 to 15): the A/B test, 6 weeks of enrollment plus 60 days of observation, with weekly guardrail checks. Phase 2, launch moment (week 16, only after SHIP): Plan Fit Check for 100% of the German pilot, the outreach line added, agents and account managers live with results. Phase 3, post-launch (weeks 16 to 28): monitor kept plans and agent contacts, start the pay day date test (B6), and assess extension to purchased portfolios and other markets.</li>
+    </ul>
+    <h4>Success Metrics</h4>
+    <ul>
+      <li><strong>Metrics:</strong> Missed payments within 60 days from 19.0% to 16.0% or lower. Kept plans per journey starter at least at the baseline of 37.3%, aiming higher. Agreement rate on started journeys at 45% or higher.</li>
+      <li><strong>Bad signal to watch for:</strong> Missed payments fall while the agreement rate falls too, meaning people are filtered out rather than helped. A high share of Risky plans confirmed anyway, meaning consumers don’t trust or understand the labels. More agent calls asking “why is my plan Risky?”, meaning the explainer copy isn’t landing.</li>
+      <li><strong>Likely post-launch decision:</strong> Iterate, triggered by a positive result below 3 points or a high rate of Risky confirmations. Double-down if the test hits SHIP: roll out to the full pilot, add the pay day date test, and extend to purchased portfolios. Deprioritize if the filtering pattern appears.</li>
+    </ul>
+    <h3>Success metrics + bad signal</h3>
+    <p>Missed payments within 60 days from 19.0% to 16.0% or lower, kept plans per starter at least 37.3%, agreement rate at 45% or higher. Bad signal: missed payments fall while agreements fall too, meaning people are filtered out, not helped.</p>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var bar = document.querySelector('.progress span');
+  var nav = document.querySelector('.dots');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var cur = 0;
+  var lockUntil = 0;
+
+  slides.forEach(function (s, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Go to ' + s.getAttribute('aria-label'));
+    var tips = { cover:'Cover', strategy:'Strategy', research:'Research', blueprint:'Blueprint', prototype:'Prototype', validation:'Validation', launch:'Launch', story:'Story', thanks:'Thanks' };
+    b.setAttribute('data-tip', tips[s.id] || s.getAttribute('aria-label'));
+    b.addEventListener('click', function () { go(i); });
+    nav.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(nav.children);
+
+  function mark(i) {
+    dots.forEach(function (d, k) {
+      d.classList.toggle('on', k === i);
+      if (k === i) { d.setAttribute('aria-current', 'step'); } else { d.removeAttribute('aria-current'); }
+    });
+    document.body.setAttribute('data-theme', slides[i].getAttribute('data-theme') || 'light');
+  }
+
+  function go(i) {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    cur = i;
+    lockUntil = Date.now() + 900;
+    slides[i].scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth', block: 'start' });
+    mark(i);
+  }
+
+  function onScroll() {
+    var se = document.scrollingElement || document.documentElement;
+    var max = se.scrollHeight - se.clientHeight;
+    bar.style.width = (max > 0 ? (se.scrollTop / max) * 100 : 0) + '%';
+    if (Date.now() < lockUntil) { return; }
+    var mid = se.scrollTop + window.innerHeight / 2;
+    var idx = 0;
+    slides.forEach(function (s, k) { if (s.offsetTop <= mid) { idx = k; } });
+    if (idx !== cur) { cur = idx; }
+    mark(cur);
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (document.querySelector('dialog[open]')) { return; }
+    if (e.altKey || e.ctrlKey || e.metaKey) { return; }
+    var onControl = e.target.closest && e.target.closest('a, button, input, textarea, select');
+    switch (e.key) {
+      case 'ArrowDown': case 'PageDown': case 'ArrowRight': go(cur + 1); break;
+      case 'ArrowUp': case 'PageUp': case 'ArrowLeft': go(cur - 1); break;
+      case ' ': case 'Spacebar':
+        if (onControl) { return; }
+        go(e.shiftKey ? cur - 1 : cur + 1); break;
+      case 'Home': go(0); break;
+      case 'End': go(slides.length - 1); break;
+      case 'Escape': go(0); break;
+      default: return;
+    }
+    e.preventDefault();
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-open]'), function (btn) {
+    btn.addEventListener('click', function () {
+      var d = document.getElementById(btn.getAttribute('data-open'));
+      if (d && typeof d.showModal === 'function') {
+        d.showModal();
+        d.scrollTop = 0;
+        d.querySelector('.src-close').focus();
+      }
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('dialog .src-close'), function (btn) {
+    btn.addEventListener('click', function () { btn.closest('dialog').close(); });
+  });
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script>
+
+<script>
+(function () {
+  var f = document.getElementById('protoFrame');
+  var original = f.getAttribute('srcdoc');
+  document.getElementById('protoFill').addEventListener('click', function () {
+    var d = f.contentDocument; if (!d) { return; }
+    var back = d.getElementById('toBudget'); var s1 = d.getElementById('s1');
+    if (s1 && s1.hidden && back) { back.click(); }
+    var same = d.getElementById('same');
+    if (same && same.checked) { same.click(); }
+    [['normal','1800'],['low','1400'],['fixed','1100']].forEach(function (p) {
+      var el = d.getElementById(p[0]); if (el) { el.disabled = false; el.value = p[1]; el.dispatchEvent(new Event('input', {bubbles:true})); }
+    });
+    var btn = d.querySelector('#budgetForm button[type=submit]'); if (btn) { btn.focus({preventScroll:true}); }
+  });
+  document.getElementById('protoReset').addEventListener('click', function () {
+    f.setAttribute('srcdoc', original);
+  });
+})();
+</script>
+
+<script>
+(function () {
+  var wrap = document.getElementById('phoneWrap'), phone = document.getElementById('phone');
+  var screen = document.getElementById('phoneScreen'), vp = document.getElementById('phoneVp');
+  function fit() {
+    var H = wrap.clientHeight; if (!H) { return; }
+    var W = H * 389 / 800;
+    phone.style.height = H + 'px';
+    phone.style.width = W + 'px';
+    wrap.style.width = W + 'px';
+    vp.style.transform = 'scale(' + (screen.clientWidth / 390) + ')';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
+})();
+</script>
+</body>
+</html>
