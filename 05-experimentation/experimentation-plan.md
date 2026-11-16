@@ -1,25 +1,28 @@
-# Experimentation Plan
+# Experimentation Plan (Module 5)
 
-> **Module 5 · ★ Deliverable 5.** Repo file `05-experimentation/experimentation-plan.md` — part of your submission.
-> Do the lab in the **Module 5 · Exercise Guide** (linked from the Module 5 deck), then click **⬇ Download .md** — it saves as this exact file. Commit it here.
-> It becomes the **Experimentation Plan** slide of your Module 6 final deck.
+## Get your documents ready
+- **From M3, your hypothesis sentence:** Based on consumers like N-02 who pick the plan that “looked like the right answer” and miss the second payment, and missed payments rising from 15.6% to 18.4% after the plan screen put the 6-month plan first (19.0% by Month 6), I believe that showing affordability fit and missed-payment consequences before confirmation for quick closers with variable income will result in more plans being kept, as measured by a drop in missed payments within 60 days from 19.0% to 15.5% or lower. I will protect the agreement rate at 44% or higher and will make a go/no-go decision after 6 weeks of enrollment and 60 days of observation.
+- **From M3, your primary success metric & guardrail metric:** Primary: missed payments within 60 days as a share of new agreements (baseline 19.0%). Guardrail: agreement rate on started journeys (baseline 46.0%), must stay at 44% or higher.
+- **From M4, the feature you scoped in your PRD this is what you're testing:** Plan Fit Check (B3): affordability input for a normal month, a low month and fixed costs, plans labeled Fits, Tight or Risky with a reason, best fit first, and confirmation locked until the consumer has opened “What if I miss a payment?” for the selected plan.
 
-## Overview
+## Define your experiment parameters
+- **Feature under test pull from your M4 PRD:** Plan Fit Check, as specified in 04-roadmap/prd-and-prototype.md.
+- **Persona pull your M2 persona:** The quick closer: a consumer with variable shift income and one or more claims who wants it done fast and commits without checking fit or consequences.
+- **Expected outcome the behaviour change you expect, from your M3 hypothesis:** Consumers choose plans that fit their income in a low month and understand the consequences before they commit, so fewer plans break in the first 60 days.
+- **Primary success metric the one number that defines success, from M3:** Missed payments within 60 days as a share of new agreements.
+- **Baseline rate today's rate of your primary metric, from your M3 data:** 19.0%, measured on 3,846 new agreements per month (metric_baselines.csv).
+- **Guardrail metric & boundary what must not break, and how far it can move before you investigate:** Agreement rate on started journeys, baseline 46.0%. Investigate if the variant falls below 44%, the level before the plan screen change. Secondary: agent contact within 7 days, baseline 31.0%, investigate above 33%, the Month 1 level.
+- **Minimum Detectable Effect (MDE) the smallest improvement worth shipping, your floor:** 3 percentage points (19.0% to 16.0%). At 2 points, the test would need about 5,800 agreements per arm, roughly three months of enrollment before the 60-day observation even starts. 3 points still means about 115 fewer broken plans per month at current volume, which is worth shipping for, and it allows a decision within about 3.5 months. The 15.5% from Module 3 stays the target, not the floor.
+- **Sample size per arm use the calculator in the builder, baseline + MDE:** About 2,500 new agreements per arm (baseline 19%, MDE 3 points, 80% power, 5% significance). Note that this counts agreements, not journey starters: at a 46% agreement rate, that’s about 5,500 starters per arm.
+- **Traffic split & test duration 50/50 standard · cover ≥ 2 weekly cycles:** 50/50, randomized per consumer at journey start, so a returning consumer always sees the same version. Enrollment for 6 weeks, which covers at least one full monthly pay cycle and well over two weekly cycles, then 60 days of observation for the last enrolled agreement. Read date about 15 weeks after launch. If the variant lowers the agreement rate, enrollment may need to run longer to reach 2,500 agreements.
+- **Significance threshold p < 0.05 is standard, explain any deviation:** p < 0.05, two-sided. No deviation: a two-sided test also catches the case where the variant makes broken plans worse.
 
-_A high-level validation strategy to test your hypothesis before full-scale development._
+## Define your control and variant
+- **Control (A) the current experience, reference your M2 moment of misery and M3 funnel/workflow data:** Today’s journey: affordability questions without explanation of how the answer is used, the plan screen showing the 6-month plan first, no fit labels and no reasons, and confirmation possible without seeing what happens after a missed payment. This is where the quick closer picks the plan that “looked like the right answer” (N-02) and where missed payments rose from 15.6% to 18.4% after Month 4.
+- **Variant (B) your single change, copy the relevant screens & functional requirements from your M4 PRD:** Plan Fit Check as one change. Screen 1, “Your Monthly Budget”: normal month, low month and fixed costs, a “why we ask” note under each, and an “about the same every month” option. Screen 2, “Plans That Fit You”: the same plan lengths as control, labeled Fits (up to 40% of the remaining low-month budget), Tight (40% to 70%) or Risky (above 70%), each with a one-line reason, sorted best fit first, nothing preselected. Confirmation stays locked until “What if I miss a payment?” has been opened for the selected plan, and resets when the plan changes. Risky plans trigger a second confirmation. Screen 3, “Your Plan Is Set Up”: amount, number of payments, first due date and missed-payment rules.
+- **Isolation check, what has NOT changed? list everything identical between arms (app version, eligibility rules, notifications, onboarding). If something changed inadvertently, your test is compromised.:** Outreach letters, emails and SMS. Eligibility rules and which claims qualify. Claim amounts, plan lengths, fees and interest. The chat assistant, available the same way in both arms. Reminder timing, including any fix for T-207, which ships to both arms or neither. The other Now items, the income explainer (B2) and the mobile upload fix (B5), ship to both arms before the test starts, or are held until after it. Agent scripts and the agent screen. App and portal version apart from the variant screens.
 
-_____
-
-## What you're testing
-
-| Element | Detail |
-|---|---|
-| Hypothesis under test | _____ |
-| Experiment design (A/B, etc.) | _____ |
-| Primary metric | _____ |
-| Guardrail metric | _____ |
-| Decision rule (ship / kill / pivot) | _____ |
-
-## Findings & decision _(after running it)_
-
-_____
+## Formalize your hypothesis & shipping criteria
+- **Your hypothesis (filled in):** I believe that Plan Fit Check for quick closers with variable income will result in more plans being kept, because consumers choose plans that fit a low month and understand the consequences before committing, as measured by a 3 percentage point drop (19.0% to 16.0%, about 16% relative) in missed payments within 60 days within 6 weeks of enrollment plus 60 days of observation. We will protect the agreement rate on started journeys, keeping it at 44% or higher, throughout the test.
+- **Your shipping criteria (filled in):** We will SHIP if missed payments within 60 days improve by at least 3 percentage points at p < 0.05, and the agreement rate does not fall below 44% after 6 weeks of enrollment and 60 days of observation. We will ITERATE if direction is positive but the drop is below 3 points, or if missed payments drop but the agreement rate falls below 44%. We will KILL if missed payments show no improvement or rise. The read date is fixed at the end of the 60-day observation window, about 15 weeks after launch, and no primary results are reviewed before this date. Guardrails are monitored weekly for harm only: if the agreement rate in the variant falls below 42%, the test stops early.
+- **Hardest parameter to define, and did it change your hypothesis? quick debrief:** The MDE. My Module 3 go rule was a 2-point drop, but the sample size showed that would need about three months of enrollment before observation even starts, so I raised the MDE to 3 points to decide within one quarter. The hypothesis kept its direction, but it’s now explicit that 15.5% is the target and 16.0% is the minimum worth shipping.
